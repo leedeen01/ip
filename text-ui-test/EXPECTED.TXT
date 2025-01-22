@@ -23,12 +23,16 @@ Now you have 4 tasks in the list.
 Nice! I've marked this task as done:
 [T][X] Shower
 
+Error: An event task must be in this format (e.g., task /start /end).
+
 Got it. I've added this task:
 [T][ ] Watch Drama
 Now you have 5 tasks in the list.
 
 Nice! I've marked this task as done:
 [T][X] Study cs2103
+
+Error: The description of a ToDo cannot be empty.
 
 Here are the tasks in your list:
 1. [T][X] Study cs2103
