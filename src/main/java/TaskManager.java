@@ -2,15 +2,31 @@ import java.util.HashMap;
 
 public class TaskManager {
     static Integer taskCount = 0;
-    static HashMap<Integer, Task> tasksMap = new HashMap<>();
+    HashMap<Integer, Task> tasksMap;
     public TaskManager() {
-        
+        tasksMap = new HashMap<>();
     }
 
     public String addTask(Task task) {
         taskCount++;
         tasksMap.put(taskCount, task);
         return "Task added: " + task;
+    }
+
+    public String deleteTask(Integer taskNumber) {
+        if (!tasksMap.containsKey(taskNumber)) {
+            return "Task number " + taskNumber + " does not exist.";
+        }
+        Task task = tasksMap.get(taskNumber);
+        tasksMap.remove(taskNumber);
+
+        for (int i = taskNumber; i < taskCount; i++) {
+            tasksMap.put(i, tasksMap.get(i + 1));
+        }
+        tasksMap.remove(taskCount); 
+        taskCount--;
+
+        return "Task deleted: " + task.report() + "\nHeres the current list \n" + listTasks();
     }
 
     public String setDone(Integer taskNumber, Boolean done) {

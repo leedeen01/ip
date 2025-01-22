@@ -12,9 +12,9 @@ public class Event extends Task {
     public String report() {
         Boolean done = super.getDone();
         if (done) {
-            return "[E]"  + "[X] " + super.getName() + "(" + startDate + " " + endDate + ")";
+            return "[E]"  + "[X] " + super.getName() + " (" + startDate + " " + endDate + ")";
         }
-        return "[E][ ] " + super.getName() + "(" + startDate + " " + endDate + ")";
+        return "[E][ ] " + super.getName() + " (" + startDate + " " + endDate + ")";
     }
 }
 

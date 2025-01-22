@@ -9,9 +9,9 @@ public class Deadline extends Task {
     public String report() {
         Boolean done = super.getDone();
         if (done) {
-            return "[D]"  + "[X] " + super.getName() + "(" + dueDate + ")";
+            return "[D]"  + "[X] " + super.getName() + " (" + dueDate + ")";
         }
-        return "[D][ ] " + super.getName() + "(" + dueDate + ")";
+        return "[D][ ] " + super.getName() + " (" + dueDate + ")";
     }
 }
 
