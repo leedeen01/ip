@@ -14,8 +14,12 @@ public class Mavis {
                     break;
                 } else if (input.equals("list")) {
                     String list = taskManager.listTasks();
+                    if (list.equals("")) {
+                        System.out.println("You have no tasks in the list.\n");
+                        continue;
+                    }
                     System.out.println("Here are the tasks in your list:");
-                    System.out.println(list + "\n");
+                    System.out.println(list);
                 } else if (input.startsWith("mark")) {
                     String[] parts = input.split(" ");
                     if (parts.length != 2 || !parts[1].matches("\\d+")) {

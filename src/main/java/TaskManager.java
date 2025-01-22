@@ -1,46 +1,41 @@
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class TaskManager {
     static Integer taskCount = 0;
-    HashMap<Integer, Task> tasksMap;
+    ArrayList<Task> tasksList;
+
     public TaskManager() {
-        tasksMap = new HashMap<>();
+        tasksList = new ArrayList<>();
     }
 
     public String addTask(Task task) {
+        tasksList.add(task);
         taskCount++;
-        tasksMap.put(taskCount, task);
         return "Task added: " + task;
     }
 
     public String deleteTask(Integer taskNumber) {
-        if (!tasksMap.containsKey(taskNumber)) {
-            return "Task number " + taskNumber + " does not exist.";
-        }
-        Task task = tasksMap.get(taskNumber);
-        tasksMap.remove(taskNumber);
-
-        for (int i = taskNumber; i < taskCount; i++) {
-            tasksMap.put(i, tasksMap.get(i + 1));
-        }
-        tasksMap.remove(taskCount); 
+        Task task = tasksList.remove(taskNumber - 1);
         taskCount--;
 
-        return "Task deleted: " + task.report() + "\nHeres the current list \n" + listTasks();
+        return "Task deleted: " + task.report() + "\nHere's the current list \n" + listTasks();
     }
 
     public String setDone(Integer taskNumber, Boolean done) {
-        Task task = tasksMap.get(taskNumber);
+        if (taskNumber < 1 || taskNumber > tasksList.size()) {
+            return "Task number " + taskNumber + " does not exist.";
+        }
+        
+        Task task = tasksList.get(taskNumber - 1);
         task.setDone(done);
         return task.report();
     }
 
     public String listTasks() {
-        String list = "";
-        for (int i = 1; i <= taskCount; i++) {
-            list += i + ". " + tasksMap.get(i).report() + "\n";
+        StringBuilder list = new StringBuilder();
+        for (int i = 0; i < tasksList.size(); i++) {
+            list.append(i + 1).append(". ").append(tasksList.get(i).report()).append("\n");
         }
-        return list;
+        return list.toString();
     }
-
 }
