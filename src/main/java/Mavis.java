@@ -1,49 +1,50 @@
-import java.io.*;
-import java.util.HashMap;
+import java.util.Scanner;
 
 public class Mavis {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));        
-        pw.println("Hello! I'm Mavis\nWhat can I do for you?");
-        pw.flush();
-        HashMap <Integer, String> shelf = new HashMap<>();
-        HashMap <String, Boolean> doneMap = new HashMap<>();
+    public static void main(String[] args){   
+        Scanner sc = new Scanner(System.in);
+        TaskManager taskManager = new TaskManager();
+        System.out.println("Hello! I'm Mavis\nWhat can I do for you?\n");
+
         while(true) {
-            String[] inputs = br.readLine().split(" ");            
-            if (inputs[0].equals("bye")) {
-                System.out.println("Bye. Hope to see you again soon!");
+            String input = sc.next();          
+            if (input.equals("bye")) {
+                System.out.println("Bye. Hope to see you again soon!\n");
                 break;
-            } else if (inputs[0].equals("list")){
-                if (shelf.isEmpty()) {
-                    pw.println("The shelf is empty.");
-                } else {
-                    for (int i = 0; i < shelf.size(); i++) {
-                        Boolean x = doneMap.get(shelf.get(i));
-                        if (x == true) {
-                            pw.println((i + 1) + ". "+ "[" + "X" + "] " + shelf.get(i));
-                        } else {
-                            pw.println((i + 1) + ". "+ "[" + " " + "] " + shelf.get(i));
-                        }
-                    }
-                }
-            } else if (inputs[0].equals("mark")) {
-                doneMap.put(inputs[1], true);
-                pw.println("Nice! I've marked this task as done:\r\n[X] " + inputs[1]);
-            } else if (inputs[0].equals("unmark")) {
-                doneMap.put(inputs[1], false);
-                pw.println("OK, I've marked this task as not done yet:\r\n[ ] " + inputs[1]);
+            } else if (input.equals("list")){
+                String list = taskManager.listTasks();
+                System.out.println("Here are the tasks in your list:");
+                System.out.println(list + "\n");
+            } else if (input.equals("mark")) {
+                System.out.println("Nice! I've marked this task as done:");
+                String task = taskManager.setDone(sc.nextInt(), true);
+                System.out.println(task + "\n");
+            } else if (input.equals("unmark")) {
+                System.out.println("OK, I've marked this task as not done yet:");
+                String task = taskManager.setDone(sc.nextInt(), false);
+                System.out.println(task + "\n");
+            } else if (input.equals("todo")) {
+                String name = sc.nextLine().trim();          
+                ToDo todo = new ToDo(name);
+                taskManager.addTask(todo);
+                System.out.println("Got it. I've added this task:\r\n" + todo.report());
+                System.out.println("Now you have " + TaskManager.taskCount + " tasks in the list.\n");
+            } else if (input.equals("deadline")) {
+                String[] name = sc.nextLine().trim().split("/");          
+                Deadline deadline = new Deadline(name[0], name[1]);
+                taskManager.addTask(deadline);
+                System.out.println("Got it. I've added this task:\r\n" + deadline.report());
+                System.out.println("Now you have " + TaskManager.taskCount + " tasks in the list.\n");
+            } else if (input.equals("event")) {
+                String[] name = sc.nextLine().trim().split("/");          
+                Event event = new Event(name[0], name[1], name[2]);
+                taskManager.addTask(event);
+                System.out.println("Got it. I've added this task:\r\n" + event.report());
+                System.out.println("Now you have " + TaskManager.taskCount + " tasks in the list.\n");
             } else {
-                String recombined = String.join(" ", inputs);  // Join the array elements with a space
-                shelf.put(shelf.size(), recombined);
-                doneMap.put(recombined, false);
-                pw.println("added: " + recombined);
+                System.out.println("Invalid command\n");
             }
-            pw.flush();
-
         }
-        pw.flush();
-        pw.close();
-
+        sc.close();
     }
 }
