@@ -1,0 +1,10 @@
+list
+todo Study cs2103
+todo Shower
+deadline PS0 cs2019 /by 22 Jan
+event John Birthday Party /from 26 Jan 6pm /to 26 Jan 11pm
+mark 2
+todo Watch Drama
+mark 1
+list
+bye
