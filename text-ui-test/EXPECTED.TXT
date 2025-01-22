@@ -39,7 +39,7 @@ Nice! I've marked this task as done:
 Error: Please provide a valid task number to delete.
 
 Task deleted: [T][X] Shower
-Heres the current list 
+Here's the current list 
 1. [T][X] Study cs2103
 2. [D][ ] PS0 cs2019 (by 22 Jan)
 3. [E][ ] John Birthday Party (from 26 Jan 6pm to 26 Jan 11pm)
