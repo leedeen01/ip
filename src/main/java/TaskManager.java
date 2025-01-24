@@ -1,8 +1,16 @@
 import java.util.ArrayList;
 
 /**
- * TaskManager is a class that manages a list of tasks.
- * It provides methods to add tasks, delete tasks, mark tasks as done/undone, and list all tasks.
+ * The TaskManager class provides functionality to manage a collection of tasks.
+ * It allows you to perform various operations on tasks, including:
+ * 
+ * - Adding new tasks to the list
+ * - Deleting tasks by their identifier
+ * - Marking tasks as completed or incomplete
+ * - Listing all tasks with their current status
+ * 
+ * This class is designed to efficiently handle task management, providing 
+ * an organized way to interact with a list of tasks.
  */
 public class TaskManager {
 
@@ -10,7 +18,7 @@ public class TaskManager {
      * A static variable that keeps track of the total number of tasks.
      */
     static Integer taskCount = 0;
-    
+
     /**
      * A list that stores all the tasks managed by the TaskManager.
      */
