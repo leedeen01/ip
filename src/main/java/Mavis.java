@@ -4,6 +4,7 @@ import java.util.Scanner;
  * Mavis is a simple task management application that interacts with the user via
  * the command line to add, delete, mark, and unmark tasks.
  * It supports ToDo, Deadline, and Event tasks.
+ * Invalid input is handled with error messages.
  */
 public class Mavis {
     /**
