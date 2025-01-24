@@ -1,6 +1,11 @@
 /**
- * The Task class represents an abstract task with a name and a completion status.
- * This class is meant to be extended by more specific types of tasks.
+ * The Task class represents a generic task with a name and a completion status.
+ * This class serves as a base class intended to be extended by more specific 
+ * types of tasks that may add additional properties or behavior. 
+ * It provides basic functionality to set and get the task's name and completion status.
+ * 
+ * Subclasses should implement more specific task-related logic, such as deadlines,
+ * priorities, or custom completion conditions.
  */
 public abstract class Task {
     /**
