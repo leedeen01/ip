@@ -1,3 +1,5 @@
+package mavis.task;
+import mavis.MavisException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -27,14 +29,14 @@ public class Event extends Task {
      *                  It must be a valid date-time string.
      * @throws IllegalArgumentException If the date format is invalid, or if the startDate or endDate is incorrectly formatted.
      */
-    public Event(String name, String startDate, String endDate) {
+    public Event(String name, String startDate, String endDate) throws MavisException {
         super(name, false);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         try {
             this.startDate = LocalDateTime.parse(startDate, formatter);
             this.endDate = LocalDateTime.parse(endDate, formatter);
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Invalid date format. Please use yyyy-MM-dd HHmm. Example: task /by 2025-02-10 1800");
+            throw new MavisException("Invalid date format. Please use yyyy-MM-dd HHmm. Example: task /by 2025-02-10 1800");
         }
     }
 

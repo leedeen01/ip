@@ -1,57 +1,52 @@
 Hello! I'm Mavis
-You have 0 tasks
-
-You have no tasks in the list.\n
+How can i help you?
+____________________________________________________________
 Got it. I've added this task:
-[E][ ] Team meeting (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
-Now you have 1 tasks in the list.
-
+[T][ ] 2
+____________________________________________________________
+An event task must be in this format (e.g., task /start /end).
+____________________________________________________________
+An event task must be in this format (e.g., task /start /end).
+____________________________________________________________
+Invalid date format. Please use yyyy-MM-dd HHmm. Example: task /by 2025-02-10 1800
+____________________________________________________________
 Got it. I've added this task:
-[T][ ] Study cs2103
-Now you have 2 tasks in the list.
-
+[E][ ] go home (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
+____________________________________________________________
+A deadline task must be in this format (e.g., task /due date).
+____________________________________________________________
+The deadline must start with 'by'. Example: task /by yyyy-MM-dd HHmm
+____________________________________________________________
+Invalid date format. Please use yyyy-MM-dd HHmm. Example: task /by 2025-02-10 1800
+____________________________________________________________
 Got it. I've added this task:
-[T][ ] Shower
-Now you have 3 tasks in the list.
-
-Error: Invalid date format. Please use yyyy-MM-dd HHmm. Example: task /by 2025-02-10 1800
-
-You have 0 tasks done and 3 tasks to do.
-1. [E][ ] Team meeting (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
-2. [T][ ] Study cs2103
-3. [T][ ] Shower
-
-Error: The event must start with 'start'. Example: task /start yyyy-MM-dd HHmm /end yyyy-MM-dd HHmm
-
+[D][ ] eat food (by: Mar 01 2025 09:00)
+____________________________________________________________
+Here are the tasks in your list:
+1. [T][ ] 2
+2. [E][ ] go home (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
+3. [D][ ] eat food (by: Mar 01 2025 09:00)
+____________________________________________________________
 Nice! I've marked this task as done:
-[T][X] Study cs2103
-
-Error: An event task must be in this format (e.g., task /start /end).
-
+[T][X] 2
+____________________________________________________________
+Noted. I've removed this task:
+[E][ ] go home (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
+____________________________________________________________
+Here are the tasks in your list:
+1. [T][X] 2
+2. [D][ ] eat food (by: Mar 01 2025 09:00)
+____________________________________________________________
+OK, I've marked this task as not done yet:
+[T][ ] 2
+____________________________________________________________
 Got it. I've added this task:
-[T][ ] Watch Drama
-Now you have 4 tasks in the list.
-
-Nice! I've marked this task as done:
-[E][X] Team meeting (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
-
-Error: Please provide a valid task number to delete.
-
-Task deleted: [T][X] Study cs2103
-Here's the current list 
-You have 0 tasks done and 3 tasks to do.
-1. [E][X] Team meeting (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
-2. [T][ ] Shower
-3. [T][ ] Watch Drama
-
-Error: Task number 10 does not exist.
-
-Error: The description of a ToDo cannot be empty.
-
-You have 0 tasks done and 3 tasks to do.
-1. [E][X] Team meeting (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
-2. [T][ ] Shower
-3. [T][ ] Watch Drama
-
+[T][ ] homework for cs2103
+____________________________________________________________
+Here are the tasks in your list:
+1. [T][ ] 2
+2. [D][ ] eat food (by: Mar 01 2025 09:00)
+3. [T][ ] homework for cs2103
+____________________________________________________________
 Bye. Hope to see you again soon!
-
+____________________________________________________________

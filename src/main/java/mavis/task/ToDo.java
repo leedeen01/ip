@@ -1,3 +1,4 @@
+package mavis.task;
 /**
  * The ToDo class represents a simple task without a specific due date or event timeline.
  * It extends the abstract Task class and provides a basic implementation.
