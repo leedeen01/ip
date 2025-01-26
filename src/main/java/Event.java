@@ -20,7 +20,13 @@ public class Event extends Task {
      * @param endDate   The end date of the event.
      */
     public Event(String name, String startDate, String endDate) {
-        super(name);
+        super(name, false);
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    public Event(String name, String startDate, String endDate, boolean done) {
+        super(name, done);
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -38,6 +44,20 @@ public class Event extends Task {
             return "[E]"  + "[X] " + super.getName() + " (" + startDate + " " + endDate + ")";
         }
         return "[E][ ] " + super.getName() + " (" + startDate + " " + endDate + ")";
+    }
+
+    /**
+     * Converts the event task to a string for saving.
+     * 
+     * @return A string representing the task, including its completion status.
+     */
+    @Override
+    public String saveTask() {
+        Boolean done = super.getDone();
+        if (done) {
+            return "E"  + " " + "1" + " " + super.getName() + " " + startDate + " " + endDate;
+        }
+        return "E"  + " " + "0" + " " + super.getName() + " " + startDate + " " + endDate;
     }
 }
 

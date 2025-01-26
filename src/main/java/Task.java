@@ -8,10 +8,12 @@
  * priorities, or custom completion conditions.
  */
 public abstract class Task {
+
     /**
      * The name of the task.
      */
     String name;
+    
     /**
      * The completion status of the task. True if the task is done, false otherwise.
      */
@@ -23,9 +25,9 @@ public abstract class Task {
      * 
      * @param name The name of the task.
      */
-    public Task(String name) {
+    public Task(String name, boolean done) {
         this.name = name;
-        this.done = false;
+        this.done = done;
     }
 
     /**
@@ -54,6 +56,19 @@ public abstract class Task {
     public void setDone(Boolean done) {
         this.done = done;
     }
+
+    /**
+     * Returns a summary of the task.
+     * 
+     * @return A string description of the task.
+     */
     public abstract String report();
+
+    /**
+     * Converts the task to a string format suitable for saving to a file.
+     * 
+     * @return A string format of the task.
+     */
+    public abstract String saveTask();
 }
 

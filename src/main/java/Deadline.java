@@ -14,7 +14,12 @@ public class Deadline extends Task {
      * @param dueDate The due date of the task.
      */
     public Deadline(String name, String dueDate) {
-        super(name);
+        super(name, false);
+        this.dueDate = dueDate;
+    }
+
+    public Deadline(String name, String dueDate, boolean done) {
+        super(name, done);
         this.dueDate = dueDate;
     }
     
@@ -31,6 +36,20 @@ public class Deadline extends Task {
             return "[D]"  + "[X] " + super.getName() + " (" + dueDate + ")";
         }
         return "[D][ ] " + super.getName() + " (" + dueDate + ")";
+    }
+
+    /**
+     * Converts the deadline task to a string for saving.
+     * 
+     * @return A string representing the task, including its completion status.
+     */
+    @Override
+    public String saveTask() {
+        Boolean done = super.getDone();
+        if (done) {
+            return "D"  + " " + "1" + " " + super.getName() + " " + this.dueDate;
+        }
+        return "D"  + " " + "0" + " " + super.getName() + " " + this.dueDate;
     }
 }
 

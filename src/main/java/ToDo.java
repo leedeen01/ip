@@ -9,7 +9,11 @@ public class ToDo extends Task {
      * @param name The name of the ToDo task.
      */
     public ToDo(String name) {
-        super(name);
+        super(name, false);
+    }
+
+    public ToDo(String name, boolean done) {
+        super(name, done);
     }
 
     /**
@@ -24,6 +28,20 @@ public class ToDo extends Task {
             return "[T]"  + "[X] " + super.getName();
         }
         return "[T][ ] " + super.getName();
+    }
+
+    /**
+     * Converts the to-do task to a string for saving.
+     * 
+     * @return A string representing the task, including its completion status.
+     */
+    @Override
+    public String saveTask() {
+        Boolean done = super.getDone();
+        if (done) {
+            return "T"  + " " + "1" + " " + super.getName();
+        }
+        return "T"  + " " + "0" + " " + super.getName();
     }
 }
 
