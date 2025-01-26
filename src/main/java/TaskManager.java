@@ -88,6 +88,7 @@ public class TaskManager {
         
         Task task = tasksList.get(taskNumber - 1);
         task.setDone(done);
+        this.saveTasks();
         return task.report();
     }
 
@@ -141,17 +142,19 @@ public class TaskManager {
     * @return A {@link Task} object if parsing is successful; {@code null} otherwise.
     */
     public Task parseTask(String line) {
-        String[] parts = line.split(" ");
+        String[] parts = line.split("\\|");
         String taskType = parts[0];
         Boolean isDone = parts[1].equals("1");
         String name = parts[2];
         Task task = null;
+
         switch (taskType) {
             case "T":
                 task = new ToDo(name, isDone);
                 break;
             case "D":
                 String by = parts[3];
+                System.out.println(by);
                 task = new Deadline(name, by, isDone);
                 break;
             case "E":

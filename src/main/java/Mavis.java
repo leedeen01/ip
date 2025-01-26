@@ -21,7 +21,7 @@ public class Mavis {
     * The file path to the Mavis data file.
     *     
     */
-    private static final String FILE_PATH = "src/main/data/Mavis.txt";
+    private static final String FILE_PATH = "/home/leedeen/nus/cs2103/ip/src/main/data/Mavis.txt";
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -32,13 +32,16 @@ public class Mavis {
         while (true) {
             try {
                 String input = sc.nextLine().trim();
+
                 if (input.equals("bye")) {
                     taskManager.saveTasks();
                     System.out.println("Bye. Hope to see you again soon!\n");
                     break;
+
                 } else if (input.equals("list")) {
                     String list = taskManager.listTasks();
                     System.out.println(list);
+
                 } else if (input.startsWith("mark")) {
                     String[] parts = input.split(" ");
                     if (parts.length != 2 || !parts[1].matches("\\d+")) {
@@ -52,6 +55,7 @@ public class Mavis {
                     System.out.println("Nice! I've marked this task as done:");
                     String task = taskManager.setDone(taskIndex, true);
                     System.out.println(task + "\n");
+
                 } else if (input.startsWith("unmark")) {
                     String[] parts = input.split(" ");
                     if (parts.length != 2 || !parts[1].matches("\\d+")) {
@@ -65,6 +69,7 @@ public class Mavis {
                     System.out.println("OK, I've marked this task as not done yet:");
                     String task = taskManager.setDone(taskIndex, false);
                     System.out.println(task + "\n");
+
                 } else if (input.startsWith("todo")) {
                     String name = input.substring(4).trim();
                     if (name.isEmpty()) {
@@ -74,25 +79,45 @@ public class Mavis {
                     taskManager.addTask(todo);
                     System.out.println("Got it. I've added this task:\r\n" + todo.report());
                     System.out.println("Now you have " + taskManager.taskCount + " tasks in the list.\n");
+
                 } else if (input.startsWith("deadline")) {
-                    String[] name = input.substring(8).trim().split("/", 2);
+                    String[] name = input.substring(8).trim().split("/", 3);
                     if (name.length < 2) {
                         throw new IllegalArgumentException("A deadline task must be in this format (e.g., task /due date).");
                     }
-                    Deadline deadline = new Deadline(name[0].trim(), name[1].trim());
+                    String desc = name[0].trim();
+                    String byPart = name[1].trim();
+                    if (!byPart.toLowerCase().startsWith("by")) {
+                        throw new IllegalArgumentException("The deadline must start with 'by'. Example: task /by yyyy-MM-dd HHmm");
+                    }
+                    String by = byPart.split("by")[1].trim();
+                    Deadline deadline = new Deadline(desc, by);
                     taskManager.addTask(deadline);
                     System.out.println("Got it. I've added this task:\r\n" + deadline.report());
                     System.out.println("Now you have " + taskManager.taskCount + " tasks in the list.\n");
+
                 } else if (input.startsWith("event")) {
                     String[] name = input.substring(5).trim().split("/", 3);
                     if (name.length < 3) {
                         throw new IllegalArgumentException(
                                 "An event task must be in this format (e.g., task /start /end).");
                     }
-                    Event event = new Event(name[0].trim(), name[1].trim(), name[2].trim());
+                    String desc = name[0].trim();
+                    String startPart = name[1].trim();
+                    if (!startPart.toLowerCase().startsWith("start")) {
+                        throw new IllegalArgumentException("The event must start with 'start'. Example: task /start yyyy-MM-dd HHmm /end yyyy-MM-dd HHmm");
+                    }
+                    String start = startPart.split("start")[1].trim();
+                    String endPart = name[2].trim();
+                    if (!endPart.toLowerCase().startsWith("end")) {
+                        throw new IllegalArgumentException("The event must start with 'end'. Example: task /start yyyy-MM-dd HHmm /end yyyy-MM-dd HHmm");
+                    }
+                    String end = endPart.split("end")[1].trim();
+                    Event event = new Event(desc, start, end);
                     taskManager.addTask(event);
                     System.out.println("Got it. I've added this task:\r\n" + event.report());
                     System.out.println("Now you have " + taskManager.taskCount + " tasks in the list.\n");
+
                 } else if (input.startsWith("delete")) {
                     String[] parts = input.split(" ");
                     if (parts.length != 2 || !parts[1].matches("\\d+")) {
@@ -104,11 +129,14 @@ public class Mavis {
                     }
                     String task = taskManager.deleteTask(taskIndex);
                     System.out.println(task);
+
                 } else {
                     throw new IllegalArgumentException("I'm sorry, but I don't know what that means.");
                 }
+
             } catch (IllegalArgumentException e) {
                 System.out.println("Error: " + e.getMessage() + "\n");
+
             } catch (Exception e) {
                 System.out.println("An unexpected error occurred: " + e.getMessage() + "\n");
             }
