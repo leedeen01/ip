@@ -39,9 +39,9 @@ public class ToDo extends Task {
     public String saveTask() {
         Boolean done = super.getDone();
         if (done) {
-            return "T"  + " " + "1" + " " + super.getName();
+            return "T"  + "|" + "1" + "|" + super.getName();
         }
-        return "T"  + " " + "0" + " " + super.getName();
+        return "T"  + "|" + "0" + "|" + super.getName();
     }
 }
 

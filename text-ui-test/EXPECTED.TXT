@@ -3,57 +3,55 @@ You have 0 tasks
 
 You have no tasks in the list.\n
 Got it. I've added this task:
-[T][ ] Study cs2103
+[E][ ] Team meeting (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
 Now you have 1 tasks in the list.
 
 Got it. I've added this task:
-[T][ ] Shower
+[T][ ] Study cs2103
 Now you have 2 tasks in the list.
 
 Got it. I've added this task:
-[D][ ] PS0 cs2019 (by 22 Jan)
+[T][ ] Shower
 Now you have 3 tasks in the list.
 
-You have 0 tasks done and 3 tasks to do.
-1. [T][ ] Study cs2103
-2. [T][ ] Shower
-3. [D][ ] PS0 cs2019 (by 22 Jan)
+Error: Invalid date format. Please use yyyy-MM-dd HHmm. Example: task /by 2025-02-10 1800
 
-Got it. I've added this task:
-[E][ ] John Birthday Party (from 26 Jan 6pm to 26 Jan 11pm)
-Now you have 4 tasks in the list.
+You have 0 tasks done and 3 tasks to do.
+1. [E][ ] Team meeting (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
+2. [T][ ] Study cs2103
+3. [T][ ] Shower
+
+Error: The event must start with 'start'. Example: task /start yyyy-MM-dd HHmm /end yyyy-MM-dd HHmm
 
 Nice! I've marked this task as done:
-[T][X] Shower
+[T][X] Study cs2103
 
 Error: An event task must be in this format (e.g., task /start /end).
 
 Got it. I've added this task:
 [T][ ] Watch Drama
-Now you have 5 tasks in the list.
+Now you have 4 tasks in the list.
 
 Nice! I've marked this task as done:
-[T][X] Study cs2103
+[E][X] Team meeting (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
 
 Error: Please provide a valid task number to delete.
 
-Task deleted: [T][X] Shower
+Task deleted: [T][X] Study cs2103
 Here's the current list 
-You have 0 tasks done and 4 tasks to do.
-1. [T][X] Study cs2103
-2. [D][ ] PS0 cs2019 (by 22 Jan)
-3. [E][ ] John Birthday Party (from 26 Jan 6pm to 26 Jan 11pm)
-4. [T][ ] Watch Drama
+You have 0 tasks done and 3 tasks to do.
+1. [E][X] Team meeting (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
+2. [T][ ] Shower
+3. [T][ ] Watch Drama
 
 Error: Task number 10 does not exist.
 
 Error: The description of a ToDo cannot be empty.
 
-You have 0 tasks done and 4 tasks to do.
-1. [T][X] Study cs2103
-2. [D][ ] PS0 cs2019 (by 22 Jan)
-3. [E][ ] John Birthday Party (from 26 Jan 6pm to 26 Jan 11pm)
-4. [T][ ] Watch Drama
+You have 0 tasks done and 3 tasks to do.
+1. [E][X] Team meeting (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
+2. [T][ ] Shower
+3. [T][ ] Watch Drama
 
 Bye. Hope to see you again soon!
 
