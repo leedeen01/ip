@@ -1,3 +1,4 @@
+package mavis.task;
 /**
  * The Task class represents a generic task with a name and a completion status.
  * This class serves as a base class intended to be extended by more specific 
