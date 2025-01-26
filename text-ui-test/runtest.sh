@@ -16,6 +16,8 @@ if [ -e "../src/main/data/Mavis.txt" ]
 then
     rm ../src/main/data/Mavis.txt  # Remove the file if it exists
     touch ../src/main/data/Mavis.txt  # Create the file again
+    chmod 644 ../src/main/data/Mavis.txt  # Corrected path
+
 fi
 
 # compile all the code into the bin folder, terminates if error occurred
