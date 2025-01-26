@@ -21,7 +21,7 @@ public class Mavis {
     * The file path to the Mavis data file.
     *     
     */
-    private static final String FILE_PATH = "/home/leedeen/nus/cs2103/ip/src/main/data/Mavis.txt";
+    private static final String FILE_PATH = "src/main/data/Mavis.txt";
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
