@@ -1,8 +1,7 @@
 Hello! I'm Mavis
-What can I do for you?
+You have 0 tasks
 
-You have no tasks in the list.
-
+You have no tasks in the list.\n
 Got it. I've added this task:
 [T][ ] Study cs2103
 Now you have 1 tasks in the list.
@@ -15,7 +14,7 @@ Got it. I've added this task:
 [D][ ] PS0 cs2019 (by 22 Jan)
 Now you have 3 tasks in the list.
 
-Here are the tasks in your list:
+You have 0 tasks done and 3 tasks to do.
 1. [T][ ] Study cs2103
 2. [T][ ] Shower
 3. [D][ ] PS0 cs2019 (by 22 Jan)
@@ -40,6 +39,7 @@ Error: Please provide a valid task number to delete.
 
 Task deleted: [T][X] Shower
 Here's the current list 
+You have 0 tasks done and 4 tasks to do.
 1. [T][X] Study cs2103
 2. [D][ ] PS0 cs2019 (by 22 Jan)
 3. [E][ ] John Birthday Party (from 26 Jan 6pm to 26 Jan 11pm)
@@ -49,7 +49,7 @@ Error: Task number 10 does not exist.
 
 Error: The description of a ToDo cannot be empty.
 
-Here are the tasks in your list:
+You have 0 tasks done and 4 tasks to do.
 1. [T][X] Study cs2103
 2. [D][ ] PS0 cs2019 (by 22 Jan)
 3. [E][ ] John Birthday Party (from 26 Jan 6pm to 26 Jan 11pm)

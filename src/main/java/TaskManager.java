@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * The TaskManager class provides functionality to manage a collection of tasks.
@@ -15,9 +19,14 @@ import java.util.ArrayList;
 public class TaskManager {
 
     /**
-     * A static variable that keeps track of the total number of tasks.
+     * A Integer variable that keeps track of the total number of tasks.
      */
-    static Integer taskCount = 0;
+    Integer taskCount = 0;
+
+    /**
+     * A Integer variable that keeps track of the total number of tasks completed.
+     */
+    Integer doneCount = 0;
 
     /**
      * A list that stores all the tasks managed by the TaskManager.
@@ -25,10 +34,18 @@ public class TaskManager {
     ArrayList<Task> tasksList;
 
     /**
+    * The file path to the Mavis data file for this taskManager.  
+    */
+    private String FILE_PATH;
+
+
+    /**
      * Constructor that initializes the TaskManager with an empty list of tasks.
      */
-    public TaskManager() {
+    public TaskManager(String FILE_PATH) {
         tasksList = new ArrayList<>();
+        this.FILE_PATH = FILE_PATH;
+        this.loadTasks();
     }
 
     /**
@@ -40,6 +57,7 @@ public class TaskManager {
     public String addTask(Task task) {
         tasksList.add(task);
         taskCount++;
+        this.saveTasks();
         return "Task added: " + task;
     }
 
@@ -52,7 +70,7 @@ public class TaskManager {
     public String deleteTask(Integer taskNumber) {
         Task task = tasksList.remove(taskNumber - 1);
         taskCount--;
-
+        this.saveTasks();
         return "Task deleted: " + task.report() + "\nHere's the current list \n" + listTasks();
     }
 
@@ -80,9 +98,85 @@ public class TaskManager {
      */
     public String listTasks() {
         StringBuilder list = new StringBuilder();
+        if (taskCount == 0) {
+            return "You have no tasks in the list.\\n";
+        }
+        list.append("You have ").append(doneCount).append(" tasks done and ").append(taskCount - doneCount).append(" tasks to do.\n");
         for (int i = 0; i < tasksList.size(); i++) {
             list.append(i + 1).append(". ").append(tasksList.get(i).report()).append("\n");
         }
         return list.toString();
+    }
+
+    /**
+     * Loads tasks from the file specified by {@code FILE_PATH} to taskList array.
+     *      
+     * @throws IOException If error occured when retrieving tasks from the file.
+     */
+    public void loadTasks() {
+        File file = new File(FILE_PATH);
+        if (!file.exists()) {
+            return;
+        }
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                Task task = parseTask(line);
+                if (task != null) {
+                    if (task.done) {
+                        doneCount++;
+                    }
+                    taskCount++;
+                    tasksList.add(task);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred while loading tasks from the file.");
+        }
+    }
+    /**
+    * Parses a line of text into a {@link Task} object.
+    *
+    * @param line The line of text to parse.
+    * @return A {@link Task} object if parsing is successful; {@code null} otherwise.
+    */
+    public Task parseTask(String line) {
+        String[] parts = line.split(" ");
+        String taskType = parts[0];
+        Boolean isDone = parts[1].equals("1");
+        String name = parts[2];
+        Task task = null;
+        switch (taskType) {
+            case "T":
+                task = new ToDo(name, isDone);
+                break;
+            case "D":
+                String by = parts[3];
+                task = new Deadline(name, by, isDone);
+                break;
+            case "E":
+                String from = parts[3];
+                String to = parts[4];
+                task = new Event(name, from, to, isDone);
+                break;
+        }
+        return task;
+    }
+
+    /**
+    * Saves all tasks in {@code tasksList} to the file specified by {@code FILE_PATH}.
+    *
+    * @throws IOException If error occured when saving tasks to the file.
+    */
+    public void saveTasks() {
+        try (FileWriter fw = new FileWriter(FILE_PATH)) {
+            if (!tasksList.isEmpty()) {
+                for (Task task : tasksList) {
+                    fw.write(task.saveTask() + System.lineSeparator());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred while saving tasks to the file.");
+        }
     }
 }
