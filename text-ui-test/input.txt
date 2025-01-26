@@ -3,6 +3,7 @@ event go home
 event go home /2
 event go home /start 2025-03-01 /end 2025-03-01 1700
 event go home /start 2025-03-01 0900 /end 2025-03-01 1700
+list
 deadline eat food
 deadline eat food /2
 deadline eat food /by 0900
