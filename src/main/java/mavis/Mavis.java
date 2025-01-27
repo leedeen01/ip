@@ -33,7 +33,7 @@ public class Mavis {
             }
         }
     }
-
+    
     public static void main(String[] args) {
         new Mavis("src/main/data/Mavis.txt").run();
     }
