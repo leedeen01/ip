@@ -1,10 +1,27 @@
 package mavis;
+
 import mavis.command.*;
 import mavis.task.Deadline;
 import mavis.task.Event;
 import mavis.task.ToDo;
 
+/**
+ * The Parser class is responsible for parsing user input commands and converting them into 
+ * corresponding {@link Command} objects that can be executed.
+ * It supports commands to add tasks (ToDo, Deadline, Event), delete tasks, mark or unmark tasks, 
+ * exit the application, and list tasks.
+ */
 public class Parser {
+
+    /**
+     * Parses the user input string and returns a corresponding Command object.
+     * This method identifies the type of command (e.g., "todo", "deadline", "event", etc.) 
+     * and creates the appropriate Command object based on the input.
+     * 
+     * @param input The user input as a string.
+     * @return A Command object representing the parsed input.
+     * @throws MavisException If the input is invalid or the format is incorrect for a task.
+     */
     public static Command parse(String input) throws MavisException {
         if (input.startsWith("todo")) {
             String name = input.substring(4).trim();

@@ -1,13 +1,13 @@
 package mavis;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import mavis.task.Task;
 
 /**
- * The TaskManager class provides functionality to manage a collection of tasks.
- * It allows you to perform various operations on tasks, including:
+ * The TaskList class provides functionality to manage a collection of tasks.
+ * It allows performing various operations on tasks, such as:
  * 
- * - Adding new tasks to the list
+ * - Adding new tasks
  * - Deleting tasks by their identifier
  * - Marking tasks as completed or incomplete
  * - Listing all tasks with their current status
@@ -18,7 +18,7 @@ import mavis.task.Task;
 public class TaskList {
 
     /**
-     * A Integer variable that keeps track of the total number of tasks completed.
+     * An integer variable that keeps track of the total number of tasks in the list.
      */
     Integer taskCount;
 
@@ -27,15 +27,19 @@ public class TaskList {
      */
     ArrayList<Task> tasksList;
 
-
     /**
-     * Constructor that initializes the TaskManager with an empty list of tasks.
+     * Constructs a new TaskList with an empty list of tasks.
      */
     public TaskList() {
         this.tasksList = new ArrayList<>();
         taskCount = 0;
     }
 
+    /**
+     * Constructs a new TaskList with an existing list of tasks.
+     * 
+     * @param tasksList A list of existing tasks to initialize the TaskList.
+     */
     public TaskList(ArrayList<Task> tasksList) {
         this.tasksList = tasksList;
         taskCount = tasksList.size();
@@ -45,7 +49,6 @@ public class TaskList {
      * Adds a new task to the list.
      * 
      * @param task The task to be added.
-     * @return A message confirming the task was added.
      */
     public void addTask(Task task) {
         tasksList.add(task);
@@ -56,9 +59,10 @@ public class TaskList {
      * Deletes a task from the list based on the given task number.
      * 
      * @param taskNumber The 1-based index of the task to be deleted.
-     * @return A message confirming the task was deleted along with the current list of tasks.
+     * @return The task that was deleted.
+     * @throws MavisException If the task number is invalid.
      */
-    public Task deleteTask(int taskNumber) throws MavisException  {
+    public Task deleteTask(int taskNumber) throws MavisException {
         if (taskNumber < 1 || taskNumber > tasksList.size()) {
             throw new MavisException("Invalid task number. Please enter a valid task number.");
         }
@@ -68,11 +72,11 @@ public class TaskList {
     }
 
     /**
-     * Marks a task as done or undone based on the given task number and status.
+     * Marks a task as done based on the given task number.
      * 
      * @param taskNumber The 1-based index of the task to be updated.
-     * @param done       A boolean indicating whether the task is done (true) or not (false).
-     * @return A message indicating the updated status of the task.
+     * @return The task that was marked as done.
+     * @throws MavisException If the task number is invalid.
      */
     public Task markDone(int taskNumber) throws MavisException {
         if (taskNumber < 1 || taskNumber > tasksList.size()) {
@@ -83,7 +87,14 @@ public class TaskList {
         return task;
     }
 
-    public Task unmarkDone(int taskNumber) throws MavisException  {
+    /**
+     * Marks a task as undone based on the given task number.
+     * 
+     * @param taskNumber The 1-based index of the task to be updated.
+     * @return The task that was marked as undone.
+     * @throws MavisException If the task number is invalid.
+     */
+    public Task unmarkDone(int taskNumber) throws MavisException {
         if (taskNumber < 1 || taskNumber > tasksList.size()) {
             throw new MavisException("Invalid task number. Please enter a valid task number.");
         }
@@ -92,8 +103,12 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Returns the list of all tasks in the TaskList.
+     * 
+     * @return The list of tasks.
+     */
     public ArrayList<Task> getTasksList() {
         return tasksList;
     }
-
 }

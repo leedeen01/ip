@@ -1,11 +1,14 @@
 package mavis.task;
+
 /**
  * The ToDo class represents a simple task without a specific due date or event timeline.
  * It extends the abstract Task class and provides a basic implementation.
  */
 public class ToDo extends Task {
+
     /**
      * Constructs a ToDo task with the specified name.
+     * The task is initially marked as not done.
      * 
      * @param name The name of the ToDo task.
      */
@@ -13,6 +16,12 @@ public class ToDo extends Task {
         super(name, false);
     }
 
+    /**
+     * Constructs a ToDo task with the specified name and completion status.
+     * 
+     * @param name The name of the ToDo task.
+     * @param done The completion status of the task. True if the task is done, false otherwise.
+     */
     public ToDo(String name, boolean done) {
         super(name, done);
     }
@@ -45,4 +54,3 @@ public class ToDo extends Task {
         return "T"  + "|" + "0" + "|" + super.getName();
     }
 }
-
