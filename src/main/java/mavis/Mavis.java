@@ -35,6 +35,6 @@ public class Mavis {
     }
 
     public static void main(String[] args) {
-        new Mavis("/home/leedeen/nus/cs2103/ip/src/main/data/Mavis.txt").run();
+        new Mavis("src/main/data/Mavis.txt").run();
     }
 }
