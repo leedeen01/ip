@@ -55,9 +55,14 @@ public class Parser {
         } else if(input.startsWith("mark")) {
             int num = Integer.parseInt(input.split(" ")[1]);
             return new MarkCommand(num);
+
         } else if(input.startsWith("unmark")) {
             int num = Integer.parseInt(input.split(" ")[1]);
             return new UnmarkCommand(num);
+
+        }else if(input.startsWith("find")) {
+            String toFind = input.split("find")[1].trim();
+            return new FindCommand(toFind);
 
         } else if(input.equals("bye")) {
             return new ExitCommand();

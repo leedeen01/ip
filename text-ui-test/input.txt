@@ -14,5 +14,6 @@ delete 2
 list
 unmark 1
 todo homework for cs2103
-list
+todo do cs2103 homework
+find homework
 bye
