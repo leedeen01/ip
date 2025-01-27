@@ -1,4 +1,5 @@
 package mavis.task;
+
 import mavis.MavisException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,6 +10,7 @@ import java.time.format.DateTimeParseException;
  * It extends the abstract Task class and adds a due date field.
  */
 public class Deadline extends Task {
+
     /**
      * The due date of the task.
      */
@@ -19,11 +21,11 @@ public class Deadline extends Task {
      * The due date should be provided in the format "yyyy-MM-dd HHmm".
      * 
      * @param name    The name of the task. It cannot be empty.
-     * @param dueDate The due date of the task in the format "yyyy-MM-dd HHmm".
+     * @param dueDate The due date of the task in the format "yyyy-MM-dd HHmm". 
      *                It must be a valid date-time string.
-     * @throws IllegalArgumentException If the date format is invalid or if the dueDate is incorrectly formatted.
+     * @throws MavisException If the date format is invalid or if the dueDate is incorrectly formatted.
      */
-    public Deadline(String name, String dueDate) throws MavisException{
+    public Deadline(String name, String dueDate) throws MavisException {
         super(name, false);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         try {
@@ -36,17 +38,17 @@ public class Deadline extends Task {
     /**
      * Constructs a Deadline object with the specified name, due date, and completion status.
      * The due date is parsed from a string using the ISO_LOCAL_DATE_TIME format.
-     *
-     * @param name The name of the task or deadline.
+     * 
+     * @param name    The name of the task or deadline.
      * @param dueDate The due date of the task in ISO_LOCAL_DATE_TIME format (e.g., "2025-01-26T15:30:00").
-     * @param done A boolean indicating whether the task is completed (true) or not (false).
+     * @param done    A boolean indicating whether the task is completed (true) or not (false).
      */
     public Deadline(String name, String dueDate, boolean done) {
         super(name, done);
         DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
         this.dueDate = LocalDateTime.parse(dueDate, formatter);
     }
-    
+
     /**
      * Generates a detailed report of the deadline task, including its completion status,
      * name, and due date.
@@ -77,4 +79,3 @@ public class Deadline extends Task {
         return "D"  + "|" + "0" + "|" + super.getName() + "|" + this.dueDate;
     }
 }
-

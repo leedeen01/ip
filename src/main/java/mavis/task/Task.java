@@ -1,4 +1,5 @@
 package mavis.task;
+
 /**
  * The Task class represents a generic task with a name and a completion status.
  * This class serves as a base class intended to be extended by more specific 
@@ -25,6 +26,7 @@ public abstract class Task {
      * By default, the task is marked as not done.
      * 
      * @param name The name of the task.
+     * @param done The completion status of the task. True if the task is done, false otherwise.
      */
     public Task(String name, boolean done) {
         this.name = name;
@@ -72,4 +74,3 @@ public abstract class Task {
      */
     public abstract String saveTask();
 }
-

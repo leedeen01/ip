@@ -1,4 +1,5 @@
 package mavis.task;
+
 import mavis.MavisException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,25 +10,27 @@ import java.time.format.DateTimeParseException;
  * It extends the abstract Task class, adding date-related details.
  */
 public class Event extends Task {
+
     /**
      * The start date of the event.
      */
-    private LocalDateTime  startDate;
+    private LocalDateTime startDate;
+
     /**
      * The end date of the event.
      */
-    private LocalDateTime  endDate;
+    private LocalDateTime endDate;
 
     /**
      * Constructs an Event with the specified name, start date, and end date.
      * The dates should be provided in the format "yyyy-MM-dd HHmm".
      * 
      * @param name      The name of the event. It cannot be empty.
-     * @param startDate The start date of the event in the format "yyyy-MM-dd HHmm".
+     * @param startDate The start date of the event in the format "yyyy-MM-dd HHmm". 
      *                  It must be a valid date-time string.
-     * @param endDate   The end date of the event in the format "yyyy-MM-dd HHmm".
+     * @param endDate   The end date of the event in the format "yyyy-MM-dd HHmm". 
      *                  It must be a valid date-time string.
-     * @throws IllegalArgumentException If the date format is invalid, or if the startDate or endDate is incorrectly formatted.
+     * @throws MavisException If the date format is invalid, or if the startDate or endDate is incorrectly formatted.
      */
     public Event(String name, String startDate, String endDate) throws MavisException {
         super(name, false);
@@ -36,18 +39,18 @@ public class Event extends Task {
             this.startDate = LocalDateTime.parse(startDate, formatter);
             this.endDate = LocalDateTime.parse(endDate, formatter);
         } catch (DateTimeParseException e) {
-            throw new MavisException("Invalid date format. Please use yyyy-MM-dd HHmm. Example: task /by 2025-02-10 1800");
+            throw new MavisException("Invalid date format. Please use yyyy-MM-dd HHmm. Example: task /from 2025-02-10 0900 to 2025-02-10 1700");
         }
     }
 
     /**
      * Constructs an Event object with the specified name, start and end dates, and completion status.
      * Both the start and end dates are parsed from strings using the ISO_LOCAL_DATE_TIME format.
-     *
-     * @param name The name of the event.
+     * 
+     * @param name      The name of the event.
      * @param startDate The start date of the event in ISO_LOCAL_DATE_TIME format (e.g., "2025-01-26T09:00:00").
-     * @param endDate The end date of the event in ISO_LOCAL_DATE_TIME format (e.g., "2025-01-26T17:00:00").
-     * @param done A boolean indicating whether the event is completed (true) or not (false).
+     * @param endDate   The end date of the event in ISO_LOCAL_DATE_TIME format (e.g., "2025-01-26T17:00:00").
+     * @param done      A boolean indicating whether the event is completed (true) or not (false).
      */
     public Event(String name, String startDate, String endDate, boolean done) {
         super(name, done);
@@ -86,4 +89,3 @@ public class Event extends Task {
         return "E"  + "|" + "0" + "|" + super.getName() + "|" + startDate + "|" + endDate;
     }
 }
-
