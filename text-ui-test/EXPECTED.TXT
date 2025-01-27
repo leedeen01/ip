@@ -8,10 +8,14 @@ An event task must be in this format (e.g., task /start /end).
 ____________________________________________________________
 An event task must be in this format (e.g., task /start /end).
 ____________________________________________________________
-Invalid date format. Please use yyyy-MM-dd HHmm. Example: task /by 2025-02-10 1800
+Invalid date format. Please use yyyy-MM-dd HHmm. Example: task /from 2025-02-10 0900 to 2025-02-10 1700
 ____________________________________________________________
 Got it. I've added this task:
 [E][ ] go home (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
+____________________________________________________________
+Here are the tasks in your list:
+1. [T][ ] 2
+2. [E][ ] go home (from: Mar 01 2025 09:00 -> to: Mar 01 2025 17:00)
 ____________________________________________________________
 A deadline task must be in this format (e.g., task /due date).
 ____________________________________________________________
@@ -43,10 +47,12 @@ ____________________________________________________________
 Got it. I've added this task:
 [T][ ] homework for cs2103
 ____________________________________________________________
-Here are the tasks in your list:
-1. [T][ ] 2
-2. [D][ ] eat food (by: Mar 01 2025 09:00)
-3. [T][ ] homework for cs2103
+Got it. I've added this task:
+[T][ ] do cs2103 homework
+____________________________________________________________
+Here are the matching tasks in your list:
+1. [T][ ] homework for cs2103
+2. [T][ ] do cs2103 homework
 ____________________________________________________________
 Bye. Hope to see you again soon!
 ____________________________________________________________
