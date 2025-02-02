@@ -33,10 +33,11 @@ public class MarkCommand extends Command {
      * @throws MavisException If an error occurs while marking the task (e.g., invalid index).
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws MavisException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws MavisException {
         Task task = taskList.markDone(taskIndex);
         storage.saveTasks(taskList);
-        ui.showMarkTask(task);
+        String response = ui.showMarkTask(task);
+        return response;
     }
 
     /**

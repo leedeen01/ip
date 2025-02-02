@@ -32,10 +32,11 @@ public class UnmarkCommand extends Command {
      * @throws MavisException If an error occurs while unmarking the task (e.g., invalid index).
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws MavisException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws MavisException {
         Task task = taskList.unmarkDone(taskNumber);
         storage.saveTasks(taskList);
-        ui.showUnmarkTask(task);
+        String response = ui.showUnmarkTask(task);
+        return response;
     }
 
     /**

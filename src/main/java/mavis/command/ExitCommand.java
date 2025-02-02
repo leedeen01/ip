@@ -20,9 +20,10 @@ public class ExitCommand extends Command {
      * @param storage The storage to save the current task list.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         storage.saveTasks(taskList);
-        ui.showGoodbyeMessage();
+        String response = ui.showGoodbyeMessage();
+        return response;
     }
 
     /**

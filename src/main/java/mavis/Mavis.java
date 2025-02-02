@@ -13,8 +13,10 @@ public class Mavis {
     private Ui ui;
 
     /**
-     * Constructs a Mavis application with the specified file path for storing tasks.
-     * @param filePath The path to the file where tasks are stored.
+     * Constructs a Mavis object with the specified file path.
+     * Initializes the UI, storage, and task list.
+     *
+     * @param filePath The file path to load and save tasks.
      */
     public Mavis(final String filePath) {
         ui = new Ui();
@@ -22,40 +24,18 @@ public class Mavis {
         try {
             this.taskList = new TaskList(storage.loadTasks());
         } catch (MavisException e) {
-            ui.showError(e.getMessage());
             this.taskList = new TaskList();
             storage.saveTasks(taskList);
         }
     }
 
-    /**
-     * Runs the Mavis application, allowing the user to interact with it by entering
-     * commands.
-     * It continuously processes commands until the exit condition is met.
-     */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(taskList, ui, storage);
-                isExit = c.isExit();
-                ui.showLine();
-            } catch (MavisException e) {
-                ui.showError(e.getMessage());
-            }
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            String response = c.execute(taskList, ui, storage);
+            return response;
+        } catch (MavisException e) {
+            return "An error occurred: " + e.getMessage();
         }
-    }
-
-    /**
-     * The main entry point of the Mavis application.
-     * Initializes the Mavis application with a default file path and runs it.
-     * @param args Command-line arguments (not used in this case).
-     */
-
-    public static void main(final String[] args) {
-        new Mavis("src/main/data/Mavis.txt").run();
     }
 }
