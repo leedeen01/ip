@@ -28,19 +28,21 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Executes the AddCommand by adding the task to the task list,
-     * saving the updated task list to storage, and showing a confirmation message.
+     * Executes the add command which adds a task to the task list, saves the updated task list to storage,
+     * and returns a response message indicating that the task has been added.
      *
-     * @param taskList The task list to which the task is added.
-     * @param ui The UI instance used to show the task added confirmation.
-     * @param storage The storage instance used to save the updated task list.
-     * @throws MavisException If an error occurs while adding the task or saving to storage.
+     * @param taskList The list of tasks to which the new task will be added.
+     * @param ui The UI component that handles user interactions and displays messages.
+     * @param storage The storage component that handles saving and loading tasks from persistent storage.
+     * @return A response message indicating that the task has been added.
+     * @throws MavisException If there is an error while saving the tasks to storage.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws MavisException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws MavisException {
         taskList.addTask(task);
         storage.saveTasks(taskList);
-        ui.showTaskAdded(task);
+        String response = ui.showTaskAdded(task);
+        return response;
     }
 
     /**

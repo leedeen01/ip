@@ -37,10 +37,11 @@ public class DeleteCommand extends Command {
      * @throws MavisException If the index is invalid or the task list is empty.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws MavisException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws MavisException {
         Task task = taskList.deleteTask(index);
         storage.saveTasks(taskList);
-        ui.showDeleteTask(task);
+        String response = ui.showDeleteTask(task);
+        return response;
     }
 
     /**

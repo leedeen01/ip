@@ -13,16 +13,17 @@ import mavis.Ui;
  */
 public abstract class Command {
 
+
     /**
-     * Executes the command with the given task list, user interface, and storage.
-     * Concrete subclasses should implement the specific logic for executing the command.
+     * Executes the command and returns the result as a string.
      *
-     * @param tasks The task list to interact with during command execution.
-     * @param ui The user interface used to interact with the user.
-     * @param storage The storage used to save data during command execution.
-     * @throws MavisException If an error occurs while executing the command.
+     * @param tasks The list of tasks to be manipulated by the command.
+     * @param ui The user interface that interacts with the user.
+     * @param storage The storage that handles saving and loading of tasks.
+     * @return The result of the command execution as a string.
+     * @throws MavisException If an error occurs during command execution.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws MavisException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws MavisException;
 
     /**
      * Determines whether this command results in an exit action.
