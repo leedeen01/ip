@@ -1,18 +1,18 @@
 package mavis;
 
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import mavis.task.Task;
 
 /**
- * The Ui class is responsible for handling user interface interactions, 
+ * The Ui class is responsible for handling user interface interactions,
  * including reading commands and displaying messages to the user.
- * 
- * It provides methods for showing task-related messages, such as adding, deleting, 
+ *
+ * It provides methods for showing task-related messages, such as adding, deleting,
  * marking, and unmarking tasks, as well as displaying the task list.
  */
 public class Ui {
-    
     private Scanner sc;
 
     /**
@@ -24,7 +24,7 @@ public class Ui {
 
     /**
      * Reads a command input by the user from the console.
-     * 
+     *
      * @return The command entered by the user as a trimmed string.
      */
     public String readCommand() {
@@ -49,7 +49,7 @@ public class Ui {
 
     /**
      * Displays a message confirming the addition of a task.
-     * 
+     *
      * @param task The task that was added.
      */
     public void showTaskAdded(Task task) {
@@ -58,7 +58,7 @@ public class Ui {
 
     /**
      * Displays a message confirming the deletion of a task.
-     * 
+     *
      * @param task The task that was removed.
      */
     public void showDeleteTask(Task task) {
@@ -67,7 +67,7 @@ public class Ui {
 
     /**
      * Displays a message confirming that a task has been marked as done.
-     * 
+     *
      * @param task The task that was marked as done.
      */
     public void showMarkTask(Task task) {
@@ -76,7 +76,7 @@ public class Ui {
 
     /**
      * Displays a message confirming that a task has been marked as not done.
-     * 
+     *
      * @param task The task that was marked as not done.
      */
     public void showUnmarkTask(Task task) {
@@ -85,7 +85,7 @@ public class Ui {
 
     /**
      * Displays a list of all tasks currently stored in the TaskManager.
-     * 
+     *
      * @param taskList The TaskList object that holds all tasks.
      */
     public void printTasks(TaskList taskList) {
@@ -98,7 +98,7 @@ public class Ui {
         for (int i = 0; i < tasksList.size() - 1; i++) {
             list.append(i + 1).append(". ").append(tasksList.get(i).report()).append("\n");
         }
-        list.append(tasksList.size()).append(". ").append(tasksList.get(tasksList.size()-1).report());
+        list.append(tasksList.size()).append(". ").append(tasksList.get(tasksList.size() - 1).report());
         System.out.println("Here are the tasks in your list:\n" + list);
     }
 
@@ -111,7 +111,7 @@ public class Ui {
 
     /**
      * Displays an error message to the user.
-     * 
+     *
      * @param message The error message to be displayed.
      */
     public void showError(String message) {
@@ -122,7 +122,7 @@ public class Ui {
     /**
      * Displays the tasks that match the search keyword.
      * If no tasks match, it prints a message indicating no matches were found.
-     * 
+     *
      * @param matchingTasks The list of tasks that match the search criteria.
      */
     public void showMatchingTasks(ArrayList<Task> matchingTasks) {
@@ -134,7 +134,7 @@ public class Ui {
         for (int i = 0; i < matchingTasks.size() - 1; i++) {
             list.append(i + 1).append(". ").append(matchingTasks.get(i).report()).append("\n");
         }
-        list.append(matchingTasks.size()).append(". ").append(matchingTasks.get(matchingTasks.size()-1).report());
+        list.append(matchingTasks.size()).append(". ").append(matchingTasks.get(matchingTasks.size() - 1).report());
         System.out.println("Here are the matching tasks in your list:\n" + list);
     }
 

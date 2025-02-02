@@ -1,9 +1,9 @@
 package mavis;
-import mavis.command.*;
+import mavis.command.Command;
 
 /**
- * Mavis is a simple task management application that interacts with the user via
- * the command line to add, delete, mark, and unmark tasks.
+ * Mavis is a simple task management application that interacts with
+ * the user via the command line to add, delete, mark, and unmark tasks.
  * It supports ToDo, Deadline, and Event tasks.
  * Invalid input is handled with error messages.
  */
@@ -14,17 +14,23 @@ public class Mavis {
 
     /**
      * Constructs a Mavis application with the specified file path for storing tasks.
-     * 
      * @param filePath The path to the file where tasks are stored.
      */
-    public Mavis(String filePath) {
+    public Mavis(final String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
-        this.taskList = new TaskList(storage.loadTasks());
+        try {
+            this.taskList = new TaskList(storage.loadTasks());
+        } catch (MavisException e) {
+            ui.showError(e.getMessage());
+            this.taskList = new TaskList();
+            storage.saveTasks(taskList);
+        }
     }
 
     /**
-     * Runs the Mavis application, allowing the user to interact with it by entering commands.
+     * Runs the Mavis application, allowing the user to interact with it by entering
+     * commands.
      * It continuously processes commands until the exit condition is met.
      */
     public void run() {
@@ -46,11 +52,10 @@ public class Mavis {
     /**
      * The main entry point of the Mavis application.
      * Initializes the Mavis application with a default file path and runs it.
-     * 
      * @param args Command-line arguments (not used in this case).
      */
-    
-    public static void main(String[] args) {
+
+    public static void main(final String[] args) {
         new Mavis("src/main/data/Mavis.txt").run();
     }
 }

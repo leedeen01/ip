@@ -1,23 +1,29 @@
 package mavis;
 
-import mavis.command.*;
+import mavis.command.AddCommand;
+import mavis.command.Command;
+import mavis.command.DeleteCommand;
+import mavis.command.ExitCommand;
+import mavis.command.FindCommand;
+import mavis.command.ListCommand;
+import mavis.command.MarkCommand;
+import mavis.command.UnmarkCommand;
 import mavis.task.Deadline;
 import mavis.task.Event;
 import mavis.task.ToDo;
 
 /**
- * The Parser class is responsible for parsing user input commands and converting them into 
+ * The Parser class is responsible for parsing user input commands and converting them into
  * corresponding {@link Command} objects that can be executed.
- * It supports commands to add tasks (ToDo, Deadline, Event), delete tasks, mark or unmark tasks, 
+ * It supports commands to add tasks (ToDo, Deadline, Event), delete tasks, mark or unmark tasks,
  * exit the application, and list tasks.
  */
 public class Parser {
 
     /**
      * Parses the user input string and returns a corresponding Command object.
-     * This method identifies the type of command (e.g., "todo", "deadline", "event", etc.) 
+     * This method identifies the type of command (e.g., "todo", "deadline", "event", etc.)
      * and creates the appropriate Command object based on the input.
-     * 
      * @param input The user input as a string.
      * @return A Command object representing the parsed input.
      * @throws MavisException If the input is invalid or the format is incorrect for a task.
@@ -53,38 +59,40 @@ public class Parser {
             String desc = name[0].trim();
             String startPart = name[1].trim();
             if (!startPart.toLowerCase().startsWith("start")) {
-                throw new MavisException("The event must start with 'start'. Example: task /start yyyy-MM-dd HHmm /end yyyy-MM-dd HHmm");
+                throw new MavisException("The event must start with 'start'."
+                + " Example: task /start yyyy-MM-dd HHmm /end yyyy-MM-dd HHmm");
             }
             String start = startPart.split("start")[1].trim();
             String endPart = name[2].trim();
             if (!endPart.toLowerCase().startsWith("end")) {
-                throw new MavisException("The event must start with 'end'. Example: task /start yyyy-MM-dd HHmm /end yyyy-MM-dd HHmm");
+                throw new MavisException("The event must start with 'end'."
+                + " Example: task /start yyyy-MM-dd HHmm /end yyyy-MM-dd HHmm");
             }
             String end = endPart.split("end")[1].trim();
             Event event = new Event(desc, start, end);
             return new AddCommand(event);
 
-        } else if(input.startsWith("delete")) {
+        } else if (input.startsWith("delete")) {
             String[] parts = input.split(" ");
             int taskIndex = Integer.parseInt(parts[1]);
             return new DeleteCommand(taskIndex);
 
-        } else if(input.startsWith("mark")) {
+        } else if (input.startsWith("mark")) {
             int num = Integer.parseInt(input.split(" ")[1]);
             return new MarkCommand(num);
 
-        } else if(input.startsWith("unmark")) {
+        } else if (input.startsWith("unmark")) {
             int num = Integer.parseInt(input.split(" ")[1]);
             return new UnmarkCommand(num);
 
-        }else if(input.startsWith("find")) {
+        } else if (input.startsWith("find")) {
             String toFind = input.split("find")[1].trim();
             return new FindCommand(toFind);
 
-        } else if(input.equals("bye")) {
+        } else if (input.equals("bye")) {
             return new ExitCommand();
 
-        } else if(input.equals("list")) {
+        } else if (input.equals("list")) {
             return new ListCommand();
         } else {
             throw new MavisException("I'm sorry, but I don't know what that means.");

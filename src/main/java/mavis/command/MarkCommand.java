@@ -16,7 +16,7 @@ public class MarkCommand extends Command {
     /**
      * Constructs a MarkCommand with the specified task index.
      * This index will be used to find and mark the corresponding task as done.
-     * 
+     *
      * @param taskIndex The index of the task to be marked as done.
      */
     public MarkCommand(int taskIndex) {
@@ -41,7 +41,7 @@ public class MarkCommand extends Command {
 
     /**
      * Determines whether this command results in an exit action.
-     * Since this command is for marking a task as done, it returns false, indicating that the application will not exit.
+     * Since this command is to mark task as done, it returns false, indicating that the application will not exit.
      *
      * @return false, indicating that the mark command does not result in exiting the program.
      */

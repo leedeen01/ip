@@ -9,11 +9,10 @@ import mavis.task.Task;
 /**
  * The DeleteCommand class represents a command to delete a task from the task list.
  * It extends the Command class and implements the logic for removing a task by its index.
- * The task is then deleted from the list, the task list is saved to storage, 
+ * The task is then deleted from the list, the task list is saved to storage,
  * and the user is informed of the deletion.
  */
 public class DeleteCommand extends Command {
-    
     /**
      * The index of the task to be deleted in the task list.
      */

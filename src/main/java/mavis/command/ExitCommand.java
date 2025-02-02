@@ -6,13 +6,13 @@ import mavis.Ui;
 
 /**
  * The ExitCommand class represents a command to exit the application.
- * It extends the Command class and implements the logic for saving the current task list 
+ * It extends the Command class and implements the logic for saving the current task list
  * to storage and displaying a goodbye message before exiting the program.
  */
 public class ExitCommand extends Command {
 
     /**
-     * Executes the exit command by saving the current task list to storage 
+     * Executes the exit command by saving the current task list to storage
      * and displaying a goodbye message to the user.
      *
      * @param taskList The task list that holds all tasks.

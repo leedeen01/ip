@@ -25,7 +25,6 @@ public class Storage {
 
     /**
      * Constructs a new Storage object with the specified file path.
-     * 
      * @param filePath The path to the file where tasks are saved.
      */
     public Storage(String filePath) {
@@ -35,11 +34,10 @@ public class Storage {
     /**
      * Loads tasks from the file specified by {@code filePath} into a list of {@link Task} objects.
      * If the file is empty or does not exist, an empty list is returned.
-     * 
      * @return A list of tasks loaded from the file.
      * @throws IOException If an error occurs while reading from the file.
      */
-    public ArrayList<Task> loadTasks() {
+    public ArrayList<Task> loadTasks() throws MavisException {
         File file = new File(filePath);
         ArrayList<Task> tasksList = new ArrayList<>();
         if (!file.exists() || file.length() == 0) {
@@ -61,11 +59,10 @@ public class Storage {
 
     /**
      * Parses a line of text into a {@link Task} object based on the task type.
-     * 
      * @param line The line of text to parse.
      * @return A {@link Task} object if parsing is successful; {@code null} otherwise.
      */
-    public Task parseFileTask(String line) {
+    public Task parseFileTask(String line) throws MavisException {
         String[] parts = line.split("\\|");
         String taskType = parts[0];
         Boolean isDone = parts[1].equals("1");
@@ -73,18 +70,20 @@ public class Storage {
         Task task = null;
 
         switch (taskType) {
-            case "T":
-                task = new ToDo(name, isDone);
-                break;
-            case "D":
-                String by = parts[3];
-                task = new Deadline(name, by, isDone);
-                break;
-            case "E":
-                String from = parts[3];
-                String to = parts[4];
-                task = new Event(name, from, to, isDone);
-                break;
+        case "T":
+            task = new ToDo(name, isDone);
+            break;
+        case "D":
+            String by = parts[3];
+            task = new Deadline(name, by, isDone);
+            break;
+        case "E":
+            String from = parts[3];
+            String to = parts[4];
+            task = new Event(name, from, to, isDone);
+            break;
+        default:
+            throw new MavisException("Invalid task type found in file.");
         }
         return task;
     }
@@ -92,7 +91,6 @@ public class Storage {
     /**
      * Saves all tasks in the specified {@link TaskList} to the file at {@code filePath}.
      * If the list is not empty, each task is written to the file, one per line.
-     * 
      * @param taskList The task list to save.
      * @throws IOException If an error occurs while writing to the file.
      */

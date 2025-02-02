@@ -1,18 +1,19 @@
 package mavis;
 
 import java.util.ArrayList;
+
 import mavis.task.Task;
 
 /**
  * The TaskList class provides functionality to manage a collection of tasks.
  * It allows performing various operations on tasks, such as:
- * 
+ *
  * - Adding new tasks
  * - Deleting tasks by their identifier
  * - Marking tasks as completed or incomplete
  * - Listing all tasks with their current status
- * 
- * This class is designed to efficiently handle task management, providing 
+ *
+ * This class is designed to efficiently handle task management, providing
  * an organized way to interact with a list of tasks.
  */
 public class TaskList {
@@ -20,12 +21,12 @@ public class TaskList {
     /**
      * An integer variable that keeps track of the total number of tasks in the list.
      */
-    Integer taskCount;
+    private Integer taskCount;
 
     /**
      * A list that stores all the tasks managed by the TaskManager.
      */
-    ArrayList<Task> tasksList;
+    private ArrayList<Task> tasksList;
 
     /**
      * Constructs a new TaskList with an empty list of tasks.
@@ -37,7 +38,7 @@ public class TaskList {
 
     /**
      * Constructs a new TaskList with an existing list of tasks.
-     * 
+     *
      * @param tasksList A list of existing tasks to initialize the TaskList.
      */
     public TaskList(ArrayList<Task> tasksList) {
@@ -47,7 +48,7 @@ public class TaskList {
 
     /**
      * Adds a new task to the list.
-     * 
+     *
      * @param task The task to be added.
      */
     public void addTask(Task task) {
@@ -57,7 +58,7 @@ public class TaskList {
 
     /**
      * Deletes a task from the list based on the given task number.
-     * 
+     *
      * @param taskNumber The 1-based index of the task to be deleted.
      * @return The task that was deleted.
      * @throws MavisException If the task number is invalid.
@@ -73,7 +74,7 @@ public class TaskList {
 
     /**
      * Marks a task as done based on the given task number.
-     * 
+     *
      * @param taskNumber The 1-based index of the task to be updated.
      * @return The task that was marked as done.
      * @throws MavisException If the task number is invalid.
@@ -89,7 +90,7 @@ public class TaskList {
 
     /**
      * Marks a task as undone based on the given task number.
-     * 
+     *
      * @param taskNumber The 1-based index of the task to be updated.
      * @return The task that was marked as undone.
      * @throws MavisException If the task number is invalid.
@@ -105,7 +106,7 @@ public class TaskList {
 
     /**
      * Returns the list of all tasks in the TaskList.
-     * 
+     *
      * @return The list of tasks.
      */
     public ArrayList<Task> getTasksList() {
