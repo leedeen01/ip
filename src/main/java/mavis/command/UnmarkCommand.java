@@ -16,7 +16,6 @@ public class UnmarkCommand extends Command {
     /**
      * Constructs an UnmarkCommand with the specified task number.
      * This number will be used to find and unmark the corresponding task as not done.
-     * 
      * @param taskNumber The number of the task to be unmarked.
      */
     public UnmarkCommand(Integer taskNumber) {
@@ -41,7 +40,8 @@ public class UnmarkCommand extends Command {
 
     /**
      * Determines whether this command results in an exit action.
-     * Since this command is for unmarking a task as not done, it returns false, indicating that the application will not exit.
+     * Since this command is for unmarking a task as not done, it returns false,
+     * indicating that the application will not exit.
      *
      * @return false, indicating that the unmark command does not result in exiting the program.
      */

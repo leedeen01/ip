@@ -1,15 +1,20 @@
 package mavis;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import mavis.task.Task;
-import mavis.task.ToDo;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import mavis.task.Task;
+import mavis.task.ToDo;
+
+/**
+ * This class contains tests for the Ui class.
+ */
 class UiTest {
+
     private Ui ui;
     private ByteArrayOutputStream outputStream;
 
@@ -17,9 +22,12 @@ class UiTest {
     void setUp() {
         ui = new Ui();
         outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));  // Redirect System.out to capture the output
+        System.setOut(new PrintStream(outputStream));
     }
 
+    /**
+     * Tests that the welcome message is correct.
+     */
     @Test
     void testShowWelcome() {
         ui.showWelcome();
@@ -30,6 +38,9 @@ class UiTest {
         assertTrue(output.contains("How can i help you?"));
     }
 
+    /**
+     * Tests that the showline is printed.
+     */
     @Test
     void testShowLine() {
         ui.showLine();
@@ -39,9 +50,12 @@ class UiTest {
         assertTrue(output.contains("____________________________________________________________"));
     }
 
+    /**
+     * Tests that the task added is shown.
+     */
     @Test
     void testShowTaskAdded() {
-        Task task = new ToDo("Buy groceries");  // Example task
+        Task task = new ToDo("Buy groceries");
         ui.showTaskAdded(task);
 
         // Check if the task added message is printed
@@ -50,6 +64,9 @@ class UiTest {
         assertTrue(output.contains("Buy groceries"));
     }
 
+    /**
+     * Tests that the task deleted is shown.
+     */
     @Test
     void testShowDeleteTask() {
         Task task = new ToDo("Read book");
@@ -61,6 +78,9 @@ class UiTest {
         assertTrue(output.contains("Read book"));
     }
 
+    /**
+     * Tests that the task marked.
+     */
     @Test
     void testShowMarkTask() {
         Task task = new ToDo("Complete homework");
@@ -72,6 +92,9 @@ class UiTest {
         assertTrue(output.contains("Complete homework"));
     }
 
+    /**
+     * Tests that the task unmarked.
+     */
     @Test
     void testShowUnmarkTask() {
         Task task = new ToDo("Do laundry");
@@ -83,6 +106,9 @@ class UiTest {
         assertTrue(output.contains("Do laundry"));
     }
 
+    /**
+     * Tests that the all task print.
+     */
     @Test
     void testPrintTasks() {
         TaskList taskList = new TaskList();
@@ -100,6 +126,9 @@ class UiTest {
         assertTrue(output.contains("2. [T][ ] Task 2"));
     }
 
+    /**
+     * Tests that the goodbye messsage is printed.
+     */
     @Test
     void testShowGoodbyeMessage() {
         ui.showGoodbyeMessage();
@@ -109,6 +138,9 @@ class UiTest {
         assertTrue(output.contains("Bye. Hope to see you again soon!"));
     }
 
+    /**
+     * Tests that the errors are shown.
+     */
     @Test
     void testShowError() {
         ui.showError("This is an error message");

@@ -1,0 +1,5 @@
+{
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "java.checkstyle.configuration": "${workspaceFolder}/config/checkstyle/checkstyle.xml",
+    "java.checkstyle.version": "10.21.2"
+}
