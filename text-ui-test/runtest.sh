@@ -1,43 +1,54 @@
 #!/usr/bin/env bash
 
-# create bin directory if it doesn't exist
-if [ ! -d "../bin" ]
-then
-    mkdir ../bin
+# Get the directory of the script (text-ui-test/)
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Navigate to the project root
+PROJECT_ROOT="$SCRIPT_DIR/.."
+
+# Define paths relative to the project root
+BIN_DIR="$PROJECT_ROOT/bin"
+MAVIS_TXT="$PROJECT_ROOT/src/main/data/Mavis.txt"
+SRC_DIR="$PROJECT_ROOT/src/main/java"
+JAVA_BIN="$BIN_DIR"
+INPUT_FILE="$SCRIPT_DIR/input.txt"
+EXPECTED_FILE="$SCRIPT_DIR/EXPECTED.TXT"
+ACTUAL_FILE="$SCRIPT_DIR/ACTUAL.TXT"
+EXPECTED_UNIX_FILE="$SCRIPT_DIR/EXPECTED-UNIX.TXT"
+
+# Create bin directory if it doesn't exist
+if [ ! -d "$BIN_DIR" ]; then
+    mkdir "$BIN_DIR"
 fi
 
-# delete output from previous run
-if [ -e "./ACTUAL.TXT" ]
-then
-    rm ACTUAL.TXT
+# Delete previous output
+if [ -e "$ACTUAL_FILE" ]; then
+    rm "$ACTUAL_FILE"
 fi
 
-if [ -e "../src/main/data/Mavis.txt" ]
-then
-    rm ../src/main/data/Mavis.txt  # Remove the file if it exists
-    touch ../src/main/data/Mavis.txt  # Create the file again
-    chmod 644 ../src/main/data/Mavis.txt  # Corrected path
-
+# Reset Mavis.txt
+if [ -e "$MAVIS_TXT" ]; then
+    rm "$MAVIS_TXT"
 fi
+touch "$MAVIS_TXT"
+chmod 644 "$MAVIS_TXT"
 
-# compile all the code into the bin folder, terminates if error occurred
-if ! javac -cp ../src/main/java/mavis:../src/main/java/mavis/command:../src/main/java/mavis/task -Xlint:none -d ../bin ../src/main/java/mavis/*.java ../src/main/java/mavis/command/*.java ../src/main/java/mavis/task/*.java
-then
+# Compile Java code into bin folder
+if ! javac -cp "$SRC_DIR/mavis:$SRC_DIR/mavis/command:$SRC_DIR/mavis/task" -Xlint:none -d "$JAVA_BIN" "$SRC_DIR/mavis/"*.java "$SRC_DIR/mavis/command/"*.java "$SRC_DIR/mavis/task/"*.java; then
     echo "********** BUILD FAILURE **********"
     exit 1
 fi
 
-# run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin mavis.Mavis < input.txt > ACTUAL.TXT
+# Run program, feed commands from input.txt, redirect output to ACTUAL.TXT
+java -classpath "$JAVA_BIN" mavis.Mavis < "$INPUT_FILE" > "$ACTUAL_FILE"
 
-# convert to UNIX format
-cp EXPECTED.TXT EXPECTED-UNIX.TXT
-dos2unix ACTUAL.TXT EXPECTED-UNIX.TXT
+# Convert to UNIX format
+cp "$EXPECTED_FILE" "$EXPECTED_UNIX_FILE"
+dos2unix "$ACTUAL_FILE" "$EXPECTED_UNIX_FILE"
 
-# compare the output to the expected output
-diff ACTUAL.TXT EXPECTED-UNIX.TXT
-if [ $? -eq 0 ]
-then
+# Compare output with expected
+diff "$ACTUAL_FILE" "$EXPECTED_UNIX_FILE"
+if [ $? -eq 0 ]; then
     echo "Test result: PASSED"
     exit 0
 else
