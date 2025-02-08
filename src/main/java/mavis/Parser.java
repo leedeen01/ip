@@ -29,6 +29,7 @@ public class Parser {
      * @throws MavisException If the input is invalid or the format is incorrect for a task.
      */
     public static Command parse(String... inputs) throws MavisException {
+        assert inputs != null : "Inputs should not be null";
         if (inputs.length == 0 || inputs[0].isEmpty()) {
             throw new MavisException("Input cannot be empty.");
         }

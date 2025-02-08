@@ -28,6 +28,7 @@ public class Storage {
      * @param filePath The path to the file where tasks are saved.
      */
     public Storage(String filePath) {
+        assert filePath != null && !filePath.isEmpty() : "File path cannot be null or empty";
         this.filePath = filePath;
     }
 
@@ -47,9 +48,8 @@ public class Storage {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 Task task = parseFileTask(line);
-                if (task != null) {
-                    tasksList.add(task);
-                }
+                assert task != null : "Parsed task should never be null";
+                tasksList.add(task);
             }
         } catch (IOException e) {
             System.out.println("An error occurred while loading tasks from the file.");
@@ -74,10 +74,12 @@ public class Storage {
             task = new ToDo(name, isDone);
             break;
         case "D":
+            assert parts.length == 4 : "Deadline task must have 4 parts";
             String by = parts[3];
             task = new Deadline(name, by, isDone);
             break;
         case "E":
+            assert parts.length == 5 : "Event task must have 5 parts";
             String from = parts[3];
             String to = parts[4];
             task = new Event(name, from, to, isDone);
@@ -99,6 +101,7 @@ public class Storage {
         try (FileWriter fw = new FileWriter(filePath)) {
             if (!tasksList.isEmpty()) {
                 for (Task task : tasksList) {
+                    assert task != null : "Task in list should not be null";
                     fw.write(task.saveTask() + System.lineSeparator());
                 }
             }
