@@ -23,7 +23,7 @@ public class MainWindow extends AnchorPane {
     private Mavis mavis;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image mavisImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     /**
      * Initializes the main window by binding the scroll pane's value property to the dialog container's height property
@@ -33,7 +33,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
-            DialogBox.getMavisDialog("Hello! I'm Mavis\nHow can i help you?", dukeImage)
+            DialogBox.getMavisDialog("Hello! I'm Mavis\nHow can i help you?", mavisImage)
         );
     }
 
@@ -52,7 +52,7 @@ public class MainWindow extends AnchorPane {
         String response = mavis.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getMavisDialog(response, dukeImage)
+                DialogBox.getMavisDialog(response, mavisImage)
         );
         userInput.clear();
     }

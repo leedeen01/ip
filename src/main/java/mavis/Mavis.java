@@ -20,9 +20,12 @@ public class Mavis {
      */
     public Mavis(final String filePath) {
         ui = new Ui();
+        assert ui != null : "Ui should not be null";
         storage = new Storage(filePath);
+        assert storage != null : "Storage should not be null";
         try {
             this.taskList = new TaskList(storage.loadTasks());
+            assert taskList != null : "TaskList should not be null";
         } catch (MavisException e) {
             this.taskList = new TaskList();
             storage.saveTasks(taskList);
