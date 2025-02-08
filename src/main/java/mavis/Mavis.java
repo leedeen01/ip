@@ -32,6 +32,17 @@ public class Mavis {
         }
     }
 
+    /**
+     * Processes the user input, executes the corresponding command,
+     * and returns the response as a string.
+     *
+     * This method parses the input into a {@link Command}, executes it
+     * using the current task list, UI, and storage, and returns the
+     * resulting response. If an exception occurs, an error message is returned.
+     *
+     * @param input The user input command as a string.
+     * @return The response message after executing the command.
+     */
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
