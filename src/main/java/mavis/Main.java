@@ -21,14 +21,25 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
-            stage.setScene(scene);
-            stage.setMinHeight(220);
-            stage.setMinWidth(417);
-            stage.setMaxWidth(417);
+            configureStage(stage, scene);
             fxmlLoader.<MainWindow>getController().setMavis(mavisBot);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Configures the given {@link Stage} with the specified {@link Scene}.
+     * Sets the scene and adjusts the stage's minimum and maximum dimensions.
+     *
+     * @param stage The primary stage to configure.
+     * @param scene The scene to be set on the stage.
+     */
+    public void configureStage(Stage stage, Scene scene) {
+        stage.setScene(scene);
+        stage.setMinHeight(220);
+        stage.setMinWidth(417);
+        stage.setMaxWidth(417);
     }
 }
