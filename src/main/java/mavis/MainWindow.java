@@ -7,8 +7,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 /**
- * Controller for the main GUI.
+ * Controller for the main GUI of the Mavis application.
+ * <p>
+ * This class manages the main window of the application, handling user input, displaying dialog boxes
+ * for interaction, and managing the layout of the user interface.
+ * </p>
  */
 public class MainWindow extends AnchorPane {
     @FXML
@@ -22,12 +27,22 @@ public class MainWindow extends AnchorPane {
 
     private Mavis mavis;
 
+    /**
+     * The image representing the user in the dialog box.
+     */
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+
+    /**
+     * The image representing Mavis (the bot) in the dialog box.
+    */
     private Image mavisImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     /**
      * Initializes the main window by binding the scroll pane's value property to the dialog container's height property
-     * and adding an initial dialog box.
+     * and adding an initial dialog box from Mavis.
+     * <p>
+     * This method ensures that the dialog container automatically scrolls as new messages are added.
+     * </p>
      */
     @FXML
     public void initialize() {
@@ -37,14 +52,19 @@ public class MainWindow extends AnchorPane {
         );
     }
 
-    /** Injects the Mavis instance */
+    /**
+     * Injects the Mavis instance into this controller to facilitate interaction with the task manager.
+     *
+     * @param m The Mavis instance to be injected.
+     */
     public void setMavis(Mavis m) {
         mavis = m;
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Handles the user input, creating two dialog boxes: one for the user input and one for Mavis's response.
+     * The dialog boxes are then added to the dialog container.
+     * The user input field is cleared after processing.
      */
     @FXML
     private void handleUserInput() {
@@ -56,6 +76,4 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
     }
-
-
 }

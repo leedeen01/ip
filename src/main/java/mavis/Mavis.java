@@ -8,8 +8,20 @@ import mavis.command.Command;
  * Invalid input is handled with error messages.
  */
 public class Mavis {
+    /**
+     * Manages the storage of task data, including loading and saving tasks from/to a file.
+     */
     private Storage storage;
+
+    /**
+     * Holds and manages the list of tasks in the application.
+     * Tasks are loaded from storage and manipulated through this list.
+     */
     private TaskList taskList;
+
+    /**
+     * Handles user interactions, providing a user interface for input/output operations.
+     */
     private Ui ui;
 
     /**
