@@ -2,7 +2,6 @@ package mavis.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 import mavis.MavisException;
 
@@ -33,16 +32,10 @@ public class Event extends Task {
      *                  It must be a valid date-time string.
      * @throws MavisException If the date format is invalid, or if the startDate or endDate is incorrectly formatted.
      */
-    public Event(String name, String startDate, String endDate) throws MavisException {
+    public Event(String name, LocalDateTime startDate, LocalDateTime endDate) throws MavisException {
         super(name, false);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        try {
-            this.startDate = LocalDateTime.parse(startDate, formatter);
-            this.endDate = LocalDateTime.parse(endDate, formatter);
-        } catch (DateTimeParseException e) {
-            throw new MavisException("Invalid date format. Please use yyyy-MM-dd HHmm. "
-            + "Example: task /from 2025-02-10 0900 to 2025-02-10 1700");
-        }
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     /**
@@ -92,4 +85,31 @@ public class Event extends Task {
         }
         return "E" + "|" + "0" + "|" + super.getName() + "|" + startDate + "|" + endDate;
     }
+
+    /**
+     * Checks for date and time overlap anomalies between this event and the given task.
+     * If the task has the same name and overlaps with this event's time frame,
+     * a MavisException will be thrown.
+     *
+     * @param newTask The task to check for overlap anomalies.
+     * @throws MavisException If a task with the same name and overlapping time frame exists.
+     */
+    @Override
+    public void checkOverlapAnomalies(Task newTask) throws MavisException {
+        if (this.getDone()) {
+            return;
+        }
+        if (this.getName().equals(newTask.getName()) && newTask instanceof Event) {
+            Event newEvent = (Event) newTask;
+            if (this.startDate.isEqual(newEvent.startDate)
+                || this.endDate.isEqual(newEvent.endDate)
+                || (this.startDate.isBefore(newEvent.startDate) && this.endDate.isAfter(newEvent.endDate))
+                || (this.startDate.isAfter(newEvent.startDate) && this.endDate.isBefore(newEvent.endDate))
+                || (this.startDate.isBefore(newEvent.startDate) && this.endDate.isAfter(newEvent.startDate))
+                || (this.startDate.isAfter(newEvent.startDate) && this.startDate.isBefore(newEvent.endDate))) {
+                throw new MavisException("This task " + newTask.report() + " overlaps with the existing event.");
+            }
+        }
+    }
+
 }

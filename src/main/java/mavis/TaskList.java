@@ -51,9 +51,23 @@ public class TaskList {
      *
      * @param task The task to be added.
      */
-    public void addTask(Task task) {
+    public void addTask(Task task) throws MavisException {
+        checkAnomalies(task);
         tasksList.add(task);
         taskCount++;
+    }
+
+    /**
+     * Checks for date and time anomalies between a given task and the list of existing tasks.
+     * If an anomaly (overlap) is found, an exception is thrown.
+     *
+     * @param newTask The task to check for anomalies against the existing tasks.
+     * @throws MavisException If a date/time overlap is found between the new task and any existing task.
+     */
+    public void checkAnomalies(Task newTask) throws MavisException {
+        for (Task existingTask : tasksList) {
+            existingTask.checkOverlapAnomalies(newTask);
+        }
     }
 
     /**

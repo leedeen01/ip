@@ -1,5 +1,7 @@
 package mavis.task;
 
+import mavis.MavisException;
+
 /**
  * The Task class represents a generic task with a name and a completion status.
  * This class serves as a base class intended to be extended by more specific
@@ -73,4 +75,6 @@ public abstract class Task {
      * @return A string format of the task.
      */
     public abstract String saveTask();
+
+    public abstract void checkOverlapAnomalies(Task newTask) throws MavisException;
 }

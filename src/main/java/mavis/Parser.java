@@ -1,5 +1,9 @@
 package mavis;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import mavis.command.AddCommand;
 import mavis.command.Command;
 import mavis.command.DeleteCommand;
@@ -13,9 +17,11 @@ import mavis.task.Event;
 import mavis.task.ToDo;
 
 /**
- * The Parser class is responsible for parsing user input commands and converting them into
+ * The Parser class is responsible for parsing user input commands and
+ * converting them into
  * corresponding {@link Command} objects that can be executed.
- * It supports commands to add tasks (ToDo, Deadline, Event), delete tasks, mark or unmark tasks,
+ * It supports commands to add tasks (ToDo, Deadline, Event), delete tasks, mark
+ * or unmark tasks,
  * exit the application, and list tasks.
  */
 public class Parser {
@@ -72,7 +78,22 @@ public class Parser {
                     + " Example: task /start yyyy-MM-dd HHmm /end yyyy-MM-dd HHmm");
             }
             String end = endPart.split("end", 2)[1].trim();
-            Event event = new Event(desc, start, end);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+            LocalDateTime startDate;
+            LocalDateTime endDate;
+            try {
+                startDate = LocalDateTime.parse(start, formatter);
+                endDate = LocalDateTime.parse(end, formatter);
+            } catch (DateTimeParseException e) {
+                throw new MavisException("Invalid date format. Please use yyyy-MM-dd HHmm. "
+                + "Example: task /from 2025-02-10 0900 to 2025-02-10 1700");
+            }
+
+            if (startDate.isAfter(endDate) || startDate.isEqual(endDate)) {
+                throw new MavisException("Start date must be earlier than end date.");
+            }
+
+            Event event = new Event(desc, startDate, endDate);
             return new AddCommand(event);
         } else if (input.startsWith("delete")) {
             String[] parts = input.split(" ");

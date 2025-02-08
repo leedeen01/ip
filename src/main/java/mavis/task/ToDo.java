@@ -1,5 +1,6 @@
 package mavis.task;
 
+import mavis.MavisException;
 /**
  * The ToDo class represents a simple task without a specific due date or event timeline.
  * It extends the abstract Task class and provides a basic implementation.
@@ -52,5 +53,14 @@ public class ToDo extends Task {
             return "T" + "|" + "1" + "|" + super.getName();
         }
         return "T" + "|" + "0" + "|" + super.getName();
+    }
+
+    @Override
+    public void checkOverlapAnomalies(Task newTask) throws MavisException {
+        if (!this.getDone()) {
+            if (this.getName().equals(newTask.getName())) {
+                throw new MavisException("This task " + newTask.report() + " is already exists in the list");
+            }
+        }
     }
 }

@@ -80,4 +80,27 @@ public class Deadline extends Task {
         }
         return "D" + "|" + "0" + "|" + super.getName() + "|" + this.dueDate;
     }
+
+    /**
+     * Checks for overlap anomalies with the given task. If a task with the same name
+     * and due date already exists in the list, throws a MavisException.
+     *
+     * @param newTask The new task to check for overlap anomalies.
+     * @throws MavisException If a task with the same name and due date already exists.
+     */
+    @Override
+    public void checkOverlapAnomalies(Task newTask) throws MavisException {
+        if (this.getDone()) {
+            return;
+        }
+        if (this.getName().equals(newTask.getName()) && newTask instanceof Deadline) {
+            Deadline newDeadline = (Deadline) newTask;
+
+            if (this.dueDate.equals(newDeadline.dueDate)) {
+                throw new MavisException("Task with the same name and due date ("
+                    + newTask.report() + ") already exists in the list.");
+            }
+        }
+    }
+
 }
