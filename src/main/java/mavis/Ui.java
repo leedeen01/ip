@@ -19,7 +19,7 @@ public class Ui {
      * @param task The task that was added.
      */
     public String showTaskAdded(Task task) {
-        return "Got it. I've added this task:\r\n" + task.report();
+        return "Nice catch! I've added this task to your journey:\r\n" + task.report();
     }
 
     /**
@@ -28,7 +28,7 @@ public class Ui {
      * @param task The task that was removed.
      */
     public String showDeleteTask(Task task) {
-        return "Noted. I've removed this task:\r\n" + task.report();
+        return "Task released! It's no longer part of your adventure:\r\\n" + task.report();
     }
 
     /**
@@ -37,7 +37,7 @@ public class Ui {
      * @param task The task that was marked as done.
      */
     public String showMarkTask(Task task) {
-        return "Nice! I've marked this task as done:\r\n" + task.report();
+        return "Great work, Trainer! This task is now completed:\r\n" + task.report();
     }
 
     /**
@@ -46,7 +46,7 @@ public class Ui {
      * @param task The task that was marked as not done.
      */
     public String showUnmarkTask(Task task) {
-        return "OK, I've marked this task as not done yet:\r\n" + task.report();
+        return "Oops! This task isn't done yet. Keep training!\r\n" + task.report();
     }
 
     /**
@@ -58,20 +58,20 @@ public class Ui {
         StringBuilder list = new StringBuilder();
         ArrayList<Task> tasksList = taskList.getTasksList();
         if (tasksList.isEmpty()) {
-            return "There are no tasks in your list.";
+            return "No tasks matched your search! Keep exploring and discovering new challenges.";
         }
         for (int i = 0; i < tasksList.size() - 1; i++) {
             list.append(i + 1).append(". ").append(tasksList.get(i).report()).append("\n");
         }
         list.append(tasksList.size()).append(". ").append(tasksList.get(tasksList.size() - 1).report());
-        return "Here are the tasks in your list:\n" + list;
+        return "Here are the tasks that match your search:\n" + list;
     }
 
     /**
      * Displays a goodbye message to the user.
      */
     public String showGoodbyeMessage() {
-        return "Bye. Hope to see you again soon!";
+        return "Farewell, Trainer! May your Pokémon grow strong and your journey be legendary!";
     }
 
     /**
@@ -83,12 +83,12 @@ public class Ui {
     public String showMatchingTasks(ArrayList<Task> matchingTasks) {
         StringBuilder list = new StringBuilder();
         if (matchingTasks.isEmpty()) {
-            return "There are no matching tasks in your list.";
+            return "No tasks matched your search! Keep exploring and discovering new challenges.";
         }
         for (int i = 0; i < matchingTasks.size() - 1; i++) {
             list.append(i + 1).append(". ").append(matchingTasks.get(i).report()).append("\n");
         }
         list.append(matchingTasks.size()).append(". ").append(matchingTasks.get(matchingTasks.size() - 1).report());
-        return "Here are the matching tasks in your list:\n" + list;
+        return "Here are the tasks that match your search:\n" + list;
     }
 }

@@ -61,7 +61,7 @@ public class Mavis {
             String response = c.execute(taskList, ui, storage);
             return response;
         } catch (MavisException e) {
-            return "An error occurred: " + e.getMessage();
+            return "Prepare for trouble, and make it double! " + e.getMessage();
         }
     }
 }

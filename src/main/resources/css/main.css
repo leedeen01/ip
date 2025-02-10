@@ -1,15 +1,18 @@
 .root {
     main-color: rgb(237, 255, 242);       /* Create a looked-up color called "main-color" within root. */
-    -fx-background-color: main-color;
+    -fx-background-image: url("../images/background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-position: 50% 50%;
 }
 
 .text-field {
-    -fx-background-color: #d9ffe2;
+    -fx-background-color: #d8cdcb;
     -fx-font: 20px "Arial";
 }
 
 .button {
-    -fx-background-color: mediumspringgreen;
+    -fx-background-color: rgb(245, 91, 86);
     -fx-font: italic bold 16px "Arial";
 }
 
