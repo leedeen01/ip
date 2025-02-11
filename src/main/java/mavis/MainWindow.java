@@ -41,6 +41,7 @@ public class MainWindow extends AnchorPane {
     private Image mavisImage = new Image(this.getClass().getResourceAsStream("/images/mavisBot.png"));
     private Image errorImage = new Image(this.getClass().getResourceAsStream("/images/error.png"));
 
+    private boolean isLoggedOff = true;
     /**
      * Initializes the main window by binding the scroll pane's value property to
      * the dialog container's height property
@@ -53,6 +54,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         // Randomize Mavis's image
+        isLoggedOff = false;
         userImage = getRandomPokemonImage();
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
@@ -77,17 +79,20 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
+        if (isLoggedOff) {
+            initialize();
+        }
         String input = userInput.getText();
         String response = mavis.getResponse(input);
-        if (response.startsWith("Prepare for trouble")) {
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getMavisDialog(response, errorImage));
-        } else {
-            dialogContainer.getChildren().addAll(
-                    DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getMavisDialog(response, mavisImage));
+        if (response.startsWith("Farewell")) {
+            isLoggedOff = true;
+
         }
+        Image responseImage = response.startsWith("Prepare for trouble") ? errorImage : mavisImage;
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getMavisDialog(response, responseImage)
+        );
         userInput.clear();
     }
 
