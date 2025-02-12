@@ -66,7 +66,9 @@ public class TaskList {
      */
     public void checkAnomalies(Task newTask) throws MavisException {
         for (Task existingTask : tasksList) {
-            existingTask.checkOverlapAnomalies(newTask);
+            if (existingTask.getClass().equals(newTask.getClass())) { // Ensure they are different classes
+                existingTask.checkOverlapAnomalies(newTask);
+            }
         }
     }
 

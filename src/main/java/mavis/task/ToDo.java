@@ -59,7 +59,7 @@ public class ToDo extends Task {
     public void checkOverlapAnomalies(Task newTask) throws MavisException {
         if (!this.getDone()) {
             if (this.getName().equals(newTask.getName())) {
-                throw new MavisException("This task " + newTask.report() + " is already exists in the list");
+                throw new MavisException("This task " + newTask.report() + " already exists in the list");
             }
         }
     }
