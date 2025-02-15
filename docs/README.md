@@ -1,7 +1,4 @@
 # Mavis User Guide
-// Product screenshot goes here
-![Screenshot of Mavis Task Mangement.](/docs/Ui.png)
-// Product intro goes here
 Mavis is a task management chatbot designed to help users keep track of deadlines, events, and tasks efficiently.
 
 ## Adding todo
