@@ -21,7 +21,7 @@ public abstract class Task {
     /**
      * The completion status of the task. True if the task is done, false otherwise.
      */
-    private Boolean done;
+    private Boolean isDone;
 
     /**
      * Constructor to create a new task with a given name.
@@ -30,9 +30,9 @@ public abstract class Task {
      * @param name The name of the task.
      * @param done The completion status of the task. True if the task is done, false otherwise.
      */
-    public Task(String name, boolean done) {
+    public Task(String name, boolean isDone) {
         this.name = name;
-        this.done = done;
+        this.isDone = isDone;
     }
 
     /**
@@ -50,16 +50,16 @@ public abstract class Task {
      * @return True if the task is done, false otherwise.
      */
     public Boolean getDone() {
-        return done;
+        return isDone;
     }
 
     /**
      * Sets the completion status of the task.
      *
-     * @param done True to mark the task as done, false to mark it as not done.
+     * @param isDone True to mark the task as done, false to mark it as not done.
      */
-    public void setDone(Boolean done) {
-        this.done = done;
+    public void setDone(Boolean isDone) {
+        this.isDone = isDone;
     }
 
     /**

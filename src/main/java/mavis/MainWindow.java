@@ -12,11 +12,11 @@ import javafx.scene.layout.VBox;
 
 /**
  * Controller for the main GUI of the Mavis application.
- * <p>
+ *
  * This class manages the main window of the application, handling user input,
  * displaying dialog boxes
  * for interaction, and managing the layout of the user interface.
- * </p>
+ *
  */
 public class MainWindow extends AnchorPane {
     @FXML
