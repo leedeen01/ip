@@ -9,8 +9,8 @@ delete <task number>: Deletes the specified task.
 find <task description>: Find a specific task.
 mark <task number>: Marks the specified task as done.
 unmark <task number>: Marks the specified task as undone.
-
 bye: Exits the program.
+
 ## Adding todo
 ### To add todo "Buy groceries"
 Example: todo Buy groceries
