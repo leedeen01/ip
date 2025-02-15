@@ -1,7 +1,7 @@
 # Mavis User Guide
 Mavis is a task management chatbot designed to help users keep track of deadlines, events, and tasks efficiently.
 
-Commands:
+**Commands**:
 - todo <task description>: Adds a new ToDo task.
 - deadline <task description> /due <due date>: Adds a new Deadline task.
 - event <task description> /start <start date> /end <end date>: Adds a new - Event task.
@@ -23,27 +23,27 @@ Example: deadline Finish report /by 2025-03-15 1600
 ### To add event "Team Meeting" from 2025-03-20 1400 to 2025-03-20 1600
 Example: event Team meeting /start 2025-03-20 1400 /end 2025-03-20 1600
 
-## delete task
+## Deleting task
 ### To delete task 1:
 Example: delete 1
 
-## find task
+## Finding task
 ### To find task "Finish report":
 Example: find Finish report
 
-## list task
+## List tasks
 ### To list all the tasks:
 Example: list
 
-## mark task
+## Mark task
 ### To mark task 1 on list:
 Example: mark 1
 
-## unmark XYZ
+## Unmark XYZ
 ### To unmark task 1 on list:
 Example: unmark 1
 
-## exit
+## End program
 ### To exit:
 Example: bye
 
