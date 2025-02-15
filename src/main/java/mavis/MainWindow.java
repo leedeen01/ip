@@ -97,7 +97,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Randomly selects an image for Mavis from a predefined set.
+     * Returns a randomly selected image for Mavis from a predefined set.
      *
      * @return A randomly chosen Image object.
      */
